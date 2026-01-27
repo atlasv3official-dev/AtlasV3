@@ -57,13 +57,16 @@ let gforce_enabled = false
 let prevX = 0
 let prevY = 0
 let prevZ = 0
-let h = 1 // note to self, 1/20 = seconds | tested 1/20, god it is sensitive like that. Kinda works, but maybe keep threshold values lower?
-let prevPrevX = 0 
-let prevPrevY = 0
-let prevPrevZ = 0
+let h = 1     // note to self, 1/20 = seconds | tested 1/20, god it is sensitive like that. Kinda works, but maybe keep threshold values lower?
+let prevVX = 0
+let prevVY = 0
+let prevVZ = 0
+let decel_g = 0
 let testing_value = 0
 let G_REF = planet_attributes["minecraft:overworld"].surface_gravity // using earth gravity as reference cause apparently that's what people do
 let startup = false
+let blackout_active = false
+let reddout_active = false
 ClientEvents.tick(event => {
     current_force = lerp(current_force,desired_force,lerp_speed)
     const player = event.player
@@ -80,53 +83,64 @@ ClientEvents.tick(event => {
         startup = true
     }
     let current_gravity = calculateGravity(dimension, y - planet_attributes[dimension].sea_level, radius,planet_attributes)
-    let somethingx = (x - prevX).toFixed(4)
-    let somethingy = (y - prevY).toFixed(4)
-    let somethingz = (z - prevZ).toFixed(4)
-    let secondx = (prevX - prevPrevX).toFixed(4)
-    let secondy = (prevY - prevPrevY).toFixed(4)
-    let secondz = (prevZ - prevPrevZ).toFixed(4)
-    let d1 = Math.sqrt(somethingx*somethingx + somethingy*somethingy + somethingz*somethingz)/h
-    let d2 = Math.sqrt(secondx*secondx + secondy*secondy + secondz*secondz)/h
-    let acceleration = (d1 - d2)/h
-    // let g_force = acceleration * (current_gravity / G_REF)
-    let g_force = acceleration / G_REF // multiplied by 5 for the love of the game (hwk needs it or else thresholds are too strict)
+    // Needed for reddout and accel_mag
+    let vx = (x - prevX) / h
+    let vy = (y - prevY) / h
+    let vz = (z - prevZ) / h
+
+    let ax = (vx - prevVX) / h
+    let ay = (vy - prevVY) / h
+    let az = (vz - prevVZ) / h
+    let accel_mag = Math.sqrt(ax*ax + ay*ay + az*az)
+    let speed = Math.sqrt(vx*vx + vy*vy + vz*vz)
+
+    let tangentialAccel = speed > 1e-5
+    ? (ax*vx + ay*vy + az*vz) / speed
+    : 0
+
+    let tangential_g = tangentialAccel / G_REF
     let gravity_ratio = Math.min(current_gravity / G_REF, 1.0)
-    blackout_threshold = lerp(30, 15, gravity_ratio)
-    redout_threshold = lerp(-34, -17, gravity_ratio)
+    blackout_threshold = lerp(8, 1.5, gravity_ratio) // NEED TO BE TWEAKED !!!!
+    redout_threshold   = lerp(-10, -1.5, gravity_ratio)// NEED TO BE TWEAKED !!!!
     global.GForce.setBlackoutColor(current_force, 0.0, 0.0)
-    if (g_force >= blackout_threshold) {
-        if (desired_force == 0.0) global.GForce.startBlackout()
-        else if (desired_force > 0.0) {
-            desired_force = 0.0, global.GForce.startBlackout()
-        }
+    if (tangential_g > 0) { // Blackout
+    if (tangential_g >= blackout_threshold) {
+        desired_force = 0.0
+        global.GForce.startBlackout()
+        blackout_active = true
+    } else {
+        blackout_active = false
+        if (!reddout_active) global.GForce.stopBlackout()
     }
-    else if (g_force <= redout_threshold) {
-        if (desired_force == 1.0) global.GForce.startBlackout()
-        else if (desired_force < 1.0) {
-            desired_force = 1.0, global.GForce.startBlackout()
-        }
     }
-    else { // Broken, upcoming gforce logic should fix it 
-        // global.GForce.stopBlackout()
+    else if (tangential_g < 0) { // Redout
+    if (tangential_g >= redout_threshold) {
+        desired_force = 1.0
+        global.GForce.startBlackout()
+        player.tell("It's gettin' red")
+        reddout_active = true
+    } else {
+        reddout_active = false
+        if (!blackout_active) global.GForce.stopBlackout()
+    }
+    }
+    else {
+    global.GForce.stopBlackout()
     }
     // if (g_force > testing_value) testing_value = g_force, player.tell("Speed: " + g_force)
     if (player.mainHandItem == "minecraft:stick") player.tell("Accel: " + g_force)
     if (player.mainHandItem == "minecraft:blaze_rod") player.tell("Gravity at y-Level " + y + ": " + current_gravity.toFixed(5))
     if (player.mainHandItem == "minecraft:bone") player.tell(g_force.toFixed(3) + " G's")
-    if (player.mainHandItem == "minecraft:feather") player.tell("X" + x.toFixed(4) + " prevX" + prevX.toFixed(4) + " PrevPrevX" + prevPrevX.toFixed(4) + " Gforce: " + g_force.toFixed(4) + " G's")
-    if (player.mainHandItem == "minecraft:wooden_sword") player.tell("Y: " + y.toFixed(4) + " prevY: " + prevY.toFixed(4) + " PrevPrevY: " + prevPrevY.toFixed(4) + " Gforce: " + g_force.toFixed(4) + " G's")
+    if (player.mainHandItem == "minecraft:feather") player.tell("TangAccel: " + String(tangentialAccel.toFixed(3)))
+    if (player.mainHandItem == "minecraft:wooden_sword") player.tell("TangG's: " + tangential_g)
     if (player.mainHandItem == "minecraft:paper") current_force = 0.0, desired_force = 1.0, player.tell("Current Force: " + current_force.toFixed(3))
     if (player.mainHandItem == "minecraft:diamond") current_force = 1.0, desired_force = 0.0, player.tell("Current Force: " + current_force.toFixed(3))
     if (player.mainHandItem == "minecraft:book") global.GForce.setBlackoutColor(current_force, 0.0, 0.0)
     if (player.mainHandItem == "minecraft:string") player.tell("Blackout Threshold: " + blackout_threshold.toFixed(3))
     if (player.mainHandItem == "minecraft:cobweb") player.tell("Redout Threshold: " + redout_threshold.toFixed(3))
-
-
-
-    prevPrevX = prevX
-    prevPrevY = prevY
-    prevPrevZ = prevZ
+    prevVX = vx
+    prevVY = vy
+    prevVZ = vz
     prevX = x
     prevY = y // do people even read these?
     prevZ = z // Then this ebony bird beguiling my sad fancy into smiling, 
