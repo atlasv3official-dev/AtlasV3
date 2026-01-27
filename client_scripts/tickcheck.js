@@ -107,8 +107,8 @@ ClientEvents.tick(event => {
             desired_force = 1.0, global.GForce.startBlackout()
         }
     }
-    else {
-        global.GForce.stopBlackout()
+    else { // Broken, upcoming gforce logic should fix it 
+        // global.GForce.stopBlackout()
     }
     // if (g_force > testing_value) testing_value = g_force, player.tell("Speed: " + g_force)
     if (player.mainHandItem == "minecraft:stick") player.tell("Accel: " + g_force)

@@ -3,15 +3,15 @@ if (event.level.isClientSide()) return
 const player = event.player;
 const offHandItem = player.offHandItem;
 const mainHandItem = player.mainHandItem;
-const mainHandData = mainHandItem.nbt
+var mainHandData = mainHandItem.nbt
 var offHandData = false
 if (!mainHandData) {
-    mainHandItem.setNbt({
+    mainHandData = ({
         circuits: [0, 0, 0],
         CustomModelData: 0
     })
-    console.log("AHGHHH")
-    update_circuit()
+    mainHandItem.setNbt(mainHandData)
+
 }
 if (!offHandItem.isEmpty() && offHandItem.nbt && offHandItem.nbt.type) {
   offHandData = offHandItem.nbt.type
