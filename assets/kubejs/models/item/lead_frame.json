@@ -1,0 +1,12 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "progression_items:item/primitive/lead_sheet"
+  },
+  "overrides": [
+    {
+      "predicate": { "custom_model_data": 1 },
+      "model": "progression_items:item/primitive/lead_frame"
+    }
+  ]
+}

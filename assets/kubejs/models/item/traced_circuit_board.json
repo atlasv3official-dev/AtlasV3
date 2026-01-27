@@ -1,0 +1,52 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "progression_items:item/primitive/pasted_board"
+  },
+  "overrides": [
+    {
+      "predicate": { "custom_model_data": 1 },
+      "model": "progression_items:item/primitive/control_1"
+    },
+    {
+      "predicate": { "custom_model_data": 2 },
+      "model": "progression_items:item/primitive/sequence_1"
+    },
+    {
+      "predicate": { "custom_model_data": 3 },
+      "model": "progression_items:item/primitive/relay_1"
+    },
+    {
+      "predicate": { "custom_model_data": 4 },
+      "model": "progression_items:item/primitive/relay_cured"
+    },
+    {
+      "predicate": { "custom_model_data": 5 },
+      "model": "progression_items:item/primitive/sequence_cured"
+    },
+    {
+      "predicate": { "custom_model_data": 6 },
+      "model": "progression_items:item/primitive/control_cured"
+    },
+    {
+      "predicate": { "custom_model_data": 7 },
+      "model": "progression_items:item/primitive/control_pressed"
+    },
+    {
+      "predicate": { "custom_model_data": 8 },
+      "model": "progression_items:item/primitive/sequence_pressed"
+    },
+    {
+      "predicate": { "custom_model_data": 9 },
+      "model": "progression_items:item/primitive/relay_pressed"
+    },
+    {
+      "predicate": { "custom_model_data": 98 },
+      "model": "progression_items:item/primitive/inbetween_lead"
+    },
+    {
+      "predicate": { "custom_model_data": 99 },
+      "model": "progression_items:item/primitive/inbetween_housing"
+    }
+  ]
+}

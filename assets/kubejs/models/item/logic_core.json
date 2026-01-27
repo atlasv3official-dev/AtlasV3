@@ -1,0 +1,16 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "progression_items:item/logic_core/undoped_logic_core"
+  },
+  "overrides": [
+    {
+      "predicate": { "custom_model_data": 1 },
+      "model": "progression_items:item/logic_core/pdoped_logic_core"
+    },
+    {
+      "predicate": { "custom_model_data": 2 },
+      "model": "progression_items:item/logic_core/pndoped_logic_core"
+    }
+  ]
+}

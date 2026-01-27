@@ -1,0 +1,8 @@
+Decoding the Breadboard:
+[1,0,0] = control | ModelData: 4
+[0,1,0] = relay | ModelData: 2
+[0,0,1] = sequence | ModelData: 1
+[1,1,0] = control, relay | ModelData: 6
+[0,1,1] = relay,control | ModelData: 3
+[1,0,1] = control, sequence | ModelData: 5
+[1,1,1] = control, relay, sequence | ModelData: 7

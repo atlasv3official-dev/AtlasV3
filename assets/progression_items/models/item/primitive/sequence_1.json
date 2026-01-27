@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "progression_items:item/primitive/sequence_uncured"
+  }
+}
+

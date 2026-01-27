@@ -1,0 +1,36 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "progression_items:item/primitive/breadboard"
+  },
+  "overrides": [
+    {
+      "predicate": { "custom_model_data": 1 },
+      "model": "progression_items:item/breadboard/001"
+    },
+    {
+      "predicate": { "custom_model_data": 2 },
+      "model": "progression_items:item/breadboard/010"
+    },
+    {
+      "predicate": { "custom_model_data": 3 },
+      "model": "progression_items:item/breadboard/011"
+    },
+    {
+      "predicate": { "custom_model_data": 4 },
+      "model": "progression_items:item/breadboard/100"
+    },
+    {
+      "predicate": { "custom_model_data": 5 },
+      "model": "progression_items:item/breadboard/101"
+    },
+    {
+      "predicate": { "custom_model_data": 6 },
+      "model": "progression_items:item/breadboard/110"
+    },
+    {
+      "predicate": { "custom_model_data": 7 },
+      "model": "progression_items:item/breadboard/111"
+    }
+  ]
+}
