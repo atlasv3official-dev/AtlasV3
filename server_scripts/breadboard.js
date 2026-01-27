@@ -6,8 +6,10 @@ const mainHandItem = player.mainHandItem;
 const mainHandData = mainHandItem.nbt
 var offHandData = false
 if (!mainHandData) {
-    mainHandItem.put(circuits, [0,0,0])
-    mainHandItem.put(CustomModelData, 0)
+    mainHandItem.setNbt({
+        circuits: [0, 0, 0],
+        CustomModelData: 0
+    })
     console.log("AHGHHH")
     update_circuit()
 }

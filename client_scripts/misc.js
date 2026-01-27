@@ -136,7 +136,11 @@ ItemEvents.tooltip(event => {
   })
   event.addAdvanced('kubejs:modified_breadboard', (item, advanced, text) => {
     const circuits = item.nbt?.circuits
-    if (!circuits) return
+    if (!circuits) {
+      text.add(Text.gray('Control: ☐'))
+      text.add(Text.gray('Relay: ☐'))
+      text.add(Text.gray('Sequence: ☐'))
+    }
 
     if (circuits[0] == 1) {
       text.add(Text.gray('Control: ☒'))
