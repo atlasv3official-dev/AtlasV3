@@ -1,16 +1,34 @@
 //start of the superscript
+let itemids=[
+    'some_peripherals:radar',
+    'advancedperipherals:player_detector',
+    'mekanism:mekasuit_bodyarmor',
+    'mekanism:mekasuit_boots',
+    'mekanism:mekasuit_helmet',
+    'mekanism:mekasuit_pants',
+    'mekanism:digiminer',
+    'mekanism:teleportation_core',
+    'mekanism:teleporter',
+    'mekanism:teleporter_frame',
+    'tacz:ammo'
+]
 
 ServerEvents.recipes(event =>{
-event.remove({ output: 'advancedperipherals:player_detector' })
+
+for(i=0;i<itemids.length;i++){
+    event.remove({output: itemids[i] })
+}
+
 });
 
-let ids=[]
+let gunids=[]
 TaCZServerEvents.gunIndexLoad((event) => {
 const id = event.getId().toString();
-for(i=0;i>ids.length;i++){
-   if(id==ids[1]){
+for(i=0;i<gunids.length;i++){
+   if(id==gunids[1]){
        return event.removeGun();
    }
 }
     
 });
+
