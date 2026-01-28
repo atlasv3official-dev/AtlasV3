@@ -100,8 +100,8 @@ ClientEvents.tick(event => {
 
     let tangential_g = tangentialAccel / G_REF
     let gravity_ratio = Math.min(current_gravity / G_REF, 1.0)
-    blackout_threshold = lerp(8, 1.5, gravity_ratio) // NEED TO BE TWEAKED !!!!
-    redout_threshold   = lerp(-10, -1.5, gravity_ratio)// NEED TO BE TWEAKED !!!!
+    blackout_threshold = lerp(8, 3, gravity_ratio) // NEED TO BE TWEAKED !!!!
+    redout_threshold   = lerp(-10, -3, gravity_ratio)// NEED TO BE TWEAKED !!!!
     global.GForce.setBlackoutColor(current_force, 0.0, 0.0)
     if (tangential_g > 0) { // Blackout
     if (tangential_g >= blackout_threshold) {
@@ -114,10 +114,9 @@ ClientEvents.tick(event => {
     }
     }
     else if (tangential_g < 0) { // Redout
-    if (tangential_g >= redout_threshold) {
+    if (tangential_g < redout_threshold) {
         desired_force = 1.0
         global.GForce.startBlackout()
-        player.tell("It's gettin' red")
         reddout_active = true
     } else {
         reddout_active = false
