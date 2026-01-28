@@ -9,15 +9,20 @@ LevelEvents.tick(event => {
   while (!collisionQueue.isEmpty()) {
     let data = collisionQueue.poll();
     if (data) {
-    for (let contactPoint of data) {
-  onCollide(event, contactPoint)
-}
+        for (let contactPoint of data.points) {
+            onCollide(event, contactPoint)
+        }     
+    console.log(data.id)     
     }
   }
 })
 
 function onCollide(event, data) {
-
+  console.log(Object.keys(data))
+  console.log(data.position)
+  console.log(data.velocity)
+  console.log(data.normal)
+  console.log(data.separation)
   const ENERGY_THRESHOLD=624826533.3
   let mass=89860
   let vectorvelocity=5
@@ -30,15 +35,18 @@ function onCollide(event, data) {
         data.position.x(),
         data.position.y(),
         data.position.z(),
-    4, //ke/ENERGY_THRESHOLD,
-    true,
-    'tnt'
+    1, //ke/ENERGY_THRESHOLD,
+    false,
+    'none'
   )
 } 
 }
 
 ShipEvents.collision_start(event => {
-  const { dimensionId, physLevel, shipIdA, shipIdB, contactPoints } = event
-  collisionQueue.add(contactPoints)
+  const collisionData = {
+        id: event.shipIdA,
+        points: event.contactPoints
+    }
+  collisionQueue.add(collisionData)
 })
 
