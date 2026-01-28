@@ -10,7 +10,9 @@ let itemids=[
     'mekanism:teleportation_core',
     'mekanism:teleporter',
     'mekanism:teleporter_frame',
-    'tacz:ammo'
+    'tacz:ammo',
+    'createbigcannons:flak_autcannon_round'
+    //flak shells above from
 ]
 
 ServerEvents.recipes(event =>{
