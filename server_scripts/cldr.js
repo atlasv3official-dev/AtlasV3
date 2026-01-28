@@ -24,8 +24,8 @@ function onCollide(event, data) {
   console.log(data.normal)
   console.log(data.separation)
   const ENERGY_THRESHOLD=624826533.3
-  let mass=89860
-  let vectorvelocity=5
+  let mass=89860*17
+  let vectorvelocity=Math.sqrt(data.velocity.x()**2+data.velocity.y()**2+data.velocity.z()**2)
   let ke=0.5*(mass)*(vectorvelocity**2)
 
   
@@ -35,9 +35,9 @@ function onCollide(event, data) {
         data.position.x(),
         data.position.y(),
         data.position.z(),
-    1, //ke/ENERGY_THRESHOLD,
+    ke/ENERGY_THRESHOLD,
     false,
-    'none'
+    'tnt'
   )
 } 
 }
