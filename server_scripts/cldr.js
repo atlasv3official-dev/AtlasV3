@@ -10,31 +10,38 @@ LevelEvents.tick(event => {
     let data = collisionQueue.poll();
     if (data) {
         for (let contactPoint of data.points) {
-            onCollide(event, contactPoint)
+            onCollide(event,data.id, contactPoint)
         }     
     console.log(data.id)     
     }
   }
 })
 
-function onCollide(event, data) {
+function onCollide(event, shipid, point) {
   console.log(Object.keys(data))
-  console.log(data.position)
-  console.log(data.velocity)
-  console.log(data.normal)
-  console.log(data.separation)
+  console.log(point.position)
+  console.log(point.velocity)
+  console.log(point.normal)
+  console.log(point.separation)
   const ENERGY_THRESHOLD=624826533.3
-  let mass=89860*17
-  let vectorvelocity=Math.sqrt(data.velocity.x()**2+data.velocity.y()**2+data.velocity.z()**2)
+  let ship=event.level.allShips.getByID(shipid)
+  let mass=ship.inertiaData.mass
+  if(point.normal.x()>point.normal.y()&&point.normal.x()>point.normal.z()){
+    var vectorvelocity=point.velocity.x()
+  } else if(point.normal.y()>point.normal.x()&&point.normal.y()>point.normal.z()){
+    var vectorvelocity=point.velocity.y()
+  }else if (point.normal.z()>point.normal.y()&&point.normal.z()>point.normal.y()){
+    var vectorvelocity=point.velocity.z()
+  }
   let ke=0.5*(mass)*(vectorvelocity**2)
 
   
   if (true){    //ke>=ENERGY_THRESHOLD) {
   event.level.explode(
     null,
-        data.position.x(),
-        data.position.y(),
-        data.position.z(),
+        point.position.x(),
+        point.position.y(),
+        point.position.z(),
     ke/ENERGY_THRESHOLD,
     false,
     'tnt'
