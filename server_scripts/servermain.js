@@ -13,6 +13,9 @@ let itemids=[
     'tacz:ammo',
     'createbigcannons:flak_autcannon_round'
     //flak shells above from
+    //mek storage
+    //ae2 spatial
+    //ae2 autocrafting
 ]
 
 ServerEvents.recipes(event =>{
@@ -31,6 +34,7 @@ for(i=0;i<gunids.length;i++){
        return event.removeGun();
    }
 }
+return event.removeGun();
     
 });
 
