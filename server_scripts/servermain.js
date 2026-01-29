@@ -16,6 +16,9 @@ let itemids=[
     //mek storage
     //ae2 spatial
     //ae2 autocrafting
+    //gravitron
+    //zero contact stuff make recipes
+    //
 ]
 
 ServerEvents.recipes(event =>{
