@@ -6,7 +6,6 @@ console.info('Hello, World! (Loaded server scripts)')
 
 ServerEvents.commandRegistry(event => {
     const { commands: Commands, arguments: Arguments } = event
-
     event.register(
         Commands.literal('test_gforce') // The name of the command
         .requires(source => source.hasPermission(2)) // Check if the player has operator privileges

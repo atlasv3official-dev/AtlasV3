@@ -11,5 +11,15 @@ global.Utils = {
         let h_max = escape_height - sea_level;
         const ratio = Math.sqrt(planets["cosmos:solar_system"].surface_gravity / surface_gravity);
         return (h_max * ratio) / (1 - ratio);
+    },
+
+    ltp: (player,item,message) => {
+        if (player.mainHandItem == item) player.tell(message)
+    },
+
+    roundToPointFive: (num) => {
+        return Math.round(num*2)/2
     }
+
+
 }

@@ -1,158 +1,201 @@
-const { lerp, calculateGravity, calculateRadius } = global.Utils;
-const planet_attributes = {
-    "minecraft:overworld": {"surface_gravity": 0.09807, "sea_level": 63, "escape_height": 10000},
-    "minecraft:the_nether": {"surface_gravity": 0.06, "sea_level": 63, "escape_height": 10000},
-    "minecraft:the_end": {"surface_gravity": 0.04, "sea_level": 63, "escape_height": 10000},
-    "cosmos:mercury_wasteland": {"surface_gravity": 0.037, "sea_level": 63, "escape_height": 10000},
-    "cosmos:uranus_lands": {"surface_gravity": 0.0869, "sea_level": 63, "escape_height": 10000},
-    "cosmos:venuslands": {"surface_gravity": 0.0887, "sea_level": 63, "escape_height": 10000},
-    "cosmos:jupiterlands": {"surface_gravity": 0.2479, "sea_level": 63, "escape_height": 10000},
-    "cosmos:marslands": {"surface_gravity": 0.0373, "sea_level": 63, "escape_height": 10000},
-    "cosmos:gaia_bh_1": {"surface_gravity": 0.0062, "sea_level": 63, "escape_height": 10000},
-    "cosmos:plutowastelands": {"surface_gravity": 0.0062, "sea_level": 63, "escape_height": 10000},
-    "cosmos:saturn_lands": {"surface_gravity": 0.1044, "sea_level": 63, "escape_height": 10000},
-    "cosmos:solar_system": {"surface_gravity": 0.001, "sea_level": 63, "escape_height": 10000},
-    "cosmos:b_1400_centauri": {"surface_gravity": 0.025, "sea_level": 63, "escape_height": 10000},
-    "cosmos:j_1900": {"surface_gravity": 0.12, "sea_level": 63, "escape_height": 10000},
-    "cosmos:europa_lands": {"surface_gravity": 0.12, "sea_level": 63, "escape_height": 10000},
-    "cosmos:j_1407blands": {"surface_gravity": 0.12, "sea_level": 63, "escape_height": 10000},
-    "cosmos:alpha_system": {"surface_gravity": 0.12, "sea_level": 63, "escape_height": 10000},
-    "cosmos:earth_moon": {"surface_gravity": 0.0162, "sea_level": 63, "escape_height": 10000},
-    "lostcities:lostcity": {"surface_gravity": 0.08, "sea_level": 63, "escape_height": 10000},
-    "cosmos:glacio_lands": {"surface_gravity": 0.08, "sea_level": 63, "escape_height": 10000},
-    "cosmos:neptune_lands": {"surface_gravity": 0.1115, "sea_level": 63, "escape_height": 10000},
-    "ae2:spatial_storage": {"surface_gravity": 0.08, "sea_level": 63, "escape_height": 10000}
-}
-let planet_radius = {
-    "minecraft:overworld": 0.00,
-    "minecraft:the_nether": 0.00,
-    "minecraft:the_end": 0.00,
-    "cosmos:mercury_wasteland": 0.000,
-    "cosmos:uranus_lands": 0.0000,
-    "cosmos:venuslands": 0.0000,
-    "cosmos:jupiterlands": 0.00,
-    "cosmos:marslands": 0.00,
-    "cosmos:gaia_bh_1": 0.000,
-    "cosmos:plutowastelands": 0.000,
-    "cosmos:saturn_lands": 0.00,
-    "cosmos:solar_system": 0.000,
-    "cosmos:b_1400_centauri": 0.0,
-    "cosmos:j_1900": 0.00,
-    "cosmos:europa_lands": 0.00,
-    "cosmos:j_1407blands": 0.00,
-    "cosmos:alpha_system": 0.00,
-    "cosmos:earth_moon": 0.0000,
-    "lostcities:lostcity": 0.00,
-    "cosmos:glacio_lands": 0.00,
-    "cosmos:neptune_lands": 0.0000,
-    "minecraft:the_end": 0.00,
-    "ae2:spatial_storage": 0.00
-}
-let blackout_threshold = 0.0
-let redout_threshold = -0.0 
-let current_force = 0.0
-let desired_force = 0.0 // for lerping
-let lerp_speed = 0.05
-let gforce_enabled = false
-let prevX = 0
-let prevY = 0
-let prevZ = 0
-let h = 1     // note to self, 1/20 = seconds | tested 1/20, god it is sensitive like that. Kinda works, but maybe keep threshold values lower?
-let prevVX = 0
-let prevVY = 0
-let prevVZ = 0
-let decel_g = 0
-let testing_value = 0
-let G_REF = planet_attributes["minecraft:overworld"].surface_gravity // using earth gravity as reference cause apparently that's what people do
-let startup = false
-let blackout_active = false
-let reddout_active = false
-ClientEvents.tick(event => {
-    current_force = lerp(current_force,desired_force,lerp_speed)
-    const player = event.player
-    const dimension = player.level.dimension
-    const radius = planet_radius[dimension]
-    let y = event.player.y
-    let x = event.player.x
-    let z = event.player.z
-    if (!startup) {
-        for (const [key, value] of Object.entries(planet_attributes)) {
-            let radius = calculateRadius(value["surface_gravity"],value["sea_level"],value["escape_height"],planet_attributes)
-            planet_radius[key] = radius
-        }
-        startup = true
-    }
-    let current_gravity = calculateGravity(dimension, y - planet_attributes[dimension].sea_level, radius,planet_attributes)
-    // Needed for reddout and accel_mag
-    let vx = (x - prevX) / h
-    let vy = (y - prevY) / h
-    let vz = (z - prevZ) / h
+// const { lerp, calculateGravity, calculateRadius, ltp, roundToPointFive } = global.Utils
 
-    let ax = (vx - prevVX) / h
-    let ay = (vy - prevVY) / h
-    let az = (vz - prevVZ) / h
-    let accel_mag = Math.sqrt(ax*ax + ay*ay + az*az)
-    let speed = Math.sqrt(vx*vx + vy*vy + vz*vz)
+// const planet_attributes = {
+//   "minecraft:overworld": {"surface_gravity": 0.09807, "sea_level": 63, "escape_height": 10000},
+//   "minecraft:the_nether": {"surface_gravity": 0.06, "sea_level": 63, "escape_height": 10000},
+//   "minecraft:the_end": {"surface_gravity": 0.04, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:mercury_wasteland": {"surface_gravity": 0.037, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:uranus_lands": {"surface_gravity": 0.0869, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:venuslands": {"surface_gravity": 0.0887, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:jupiterlands": {"surface_gravity": 0.2479, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:marslands": {"surface_gravity": 0.0373, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:gaia_bh_1": {"surface_gravity": 0.0062, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:plutowastelands": {"surface_gravity": 0.0062, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:saturn_lands": {"surface_gravity": 0.1044, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:solar_system": {"surface_gravity": 0.001, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:b_1400_centauri": {"surface_gravity": 0.025, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:j_1900": {"surface_gravity": 0.12, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:europa_lands": {"surface_gravity": 0.12, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:j_1407blands": {"surface_gravity": 0.12, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:alpha_system": {"surface_gravity": 0.12, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:earth_moon": {"surface_gravity": 0.0162, "sea_level": 63, "escape_height": 10000},
+//   "lostcities:lostcity": {"surface_gravity": 0.08, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:glacio_lands": {"surface_gravity": 0.08, "sea_level": 63, "escape_height": 10000},
+//   "cosmos:neptune_lands": {"surface_gravity": 0.1115, "sea_level": 63, "escape_height": 10000},
+//   "ae2:spatial_storage": {"surface_gravity": 0.08, "sea_level": 63, "escape_height": 10000}
+// }
+// let planet_radius = {}
+// let startup = false
 
-    let tangentialAccel = speed > 1e-5
-    ? (ax*vx + ay*vy + az*vz) / speed
-    : 0
+// const h = 1
+// const G_REF = 0.09807
 
-    let tangential_g = tangentialAccel / G_REF
-    let gravity_ratio = Math.min(current_gravity / G_REF, 1.0)
-    blackout_threshold = lerp(8, 3, gravity_ratio) // NEED TO BE TWEAKED !!!!
-    redout_threshold   = lerp(-10, -3, gravity_ratio)// NEED TO BE TWEAKED !!!!
-    global.GForce.setBlackoutColor(current_force, 0.0, 0.0)
-    if (tangential_g > 0) { // Blackout
-    if (tangential_g >= blackout_threshold) {
-        desired_force = 0.0
-        global.GForce.startBlackout()
-        blackout_active = true
-    } else {
-        blackout_active = false
-        if (!reddout_active) global.GForce.stopBlackout()
-    }
-    }
-    else if (tangential_g < 0) { // Redout
-    if (tangential_g < redout_threshold) {
-        desired_force = 1.0
-        global.GForce.startBlackout()
-        reddout_active = true
-    } else {
-        reddout_active = false
-        if (!blackout_active) global.GForce.stopBlackout()
-    }
-    }
-    else {
-    global.GForce.stopBlackout()
-    }
-    // if (g_force > testing_value) testing_value = g_force, player.tell("Speed: " + g_force)
-    if (player.mainHandItem == "minecraft:stick") player.tell("Accel: " + g_force)
-    if (player.mainHandItem == "minecraft:blaze_rod") player.tell("Gravity at y-Level " + y + ": " + current_gravity.toFixed(5))
-    if (player.mainHandItem == "minecraft:bone") player.tell(g_force.toFixed(3) + " G's")
-    if (player.mainHandItem == "minecraft:feather") player.tell("TangAccel: " + String(tangentialAccel.toFixed(3)))
-    if (player.mainHandItem == "minecraft:wooden_sword") player.tell("TangG's: " + tangential_g)
-    if (player.mainHandItem == "minecraft:paper") current_force = 0.0, desired_force = 1.0, player.tell("Current Force: " + current_force.toFixed(3))
-    if (player.mainHandItem == "minecraft:diamond") current_force = 1.0, desired_force = 0.0, player.tell("Current Force: " + current_force.toFixed(3))
-    if (player.mainHandItem == "minecraft:book") global.GForce.setBlackoutColor(current_force, 0.0, 0.0)
-    if (player.mainHandItem == "minecraft:string") player.tell("Blackout Threshold: " + blackout_threshold.toFixed(3))
-    if (player.mainHandItem == "minecraft:cobweb") player.tell("Redout Threshold: " + redout_threshold.toFixed(3))
-    prevVX = vx
-    prevVY = vy
-    prevVZ = vz
-    prevX = x
-    prevY = y // do people even read these?
-    prevZ = z // Then this ebony bird beguiling my sad fancy into smiling, 
-    // by the grave and stern decorum of the countenance it wore, 
-    // "Though thy crest be shorn and shaven, thou," I said, 
-    // "art sure no craven, ghastly grim and ancient raven wandering from the Nightly shore— 
-    // Tell me what thy lordly name is on the Night's Plutonian shore!" 
-    // Quoth the Raven "Nevermore."
+// let prevPos = { x: 0, y: 0, z: 0 }
+// let smoothVel = { x: 0, y: 0, z: 0 }
+// let prevSmoothVel = { x: 0, y: 0, z: 0 }
 
-    // Much I marvelled this ungainly fowl to hear discourse so plainly,
-    // Though its answer little meaning - little relevency bore;
-    // For we can not help agreeing no living human being 
-    // Ever yet was blessed with seeing bird above his chamber door-
-    // Bird or beast upon the sculptured bust above his chamber door,
-    // With such a name as "Nevermore."
-})
+// const TOTAL_BLOOD = 6000            // 6000mb or 6B
+// const HEAD_FRACTION = 0.067         // ong it had to be this   
+// const BASE_PRESSURE = 1.0
+// const VASCULAR_RESISTANCE = 0.04    // higher = slower
+// const PUMP_RATE = 0.005             // pumpin rate
+// const OXYGEN_DIFFUSION = 0.02
+// const BRAIN_O2_CONSUMPTION = 5.5    // per tick
+// global.blood ??= { // i deadass don't know why, but kubejs was tweaking out with noraml decleration. Ended up just stealing this
+//   head: {
+//     volume: TOTAL_BLOOD * HEAD_FRACTION,
+//     pressure: BASE_PRESSURE,
+//     oxygen: 1.0
+//   },
+//   body: {
+//     volume: TOTAL_BLOOD * (1 - HEAD_FRACTION),
+//     pressure: BASE_PRESSURE,
+//     oxygen: 1.0
+//   }
+// }
+
+// const blood = global.blood
+// let currentHalfHeart = 20
+// let halfHeartStorage = 150
+// let halfHeartPuncture = 2.5 // 3 seconds for full drain
+// let remainingBleedVolume = 0
+// let lastMissingHealth = 0
+
+// let heartHealth = 1.0
+
+// let ambientOxygen = 1.0            
+
+// let brainOxygenDebt = 0    
+
+// let currentOverlayIntensity = 0
+// let isRedout = false
+
+// let G_BLACKOUT_THRESHOLD = 5
+// let G_REDOUT_THRESHOLD = -5
+
+// ClientEvents.tick(event => {
+//     const player = event.player
+//     const dimStr = player.level.dimension.toString()
+
+//     if (!startup) {
+//         for (const [key, value] of Object.entries(planet_attributes)) {
+//             planet_radius[key] = calculateRadius(value.surface_gravity, value.sea_level, value.escape_height, planet_attributes)
+//         }
+//         prevPos.x = player.x; prevPos.y = player.y; prevPos.z = player.z
+//         startup = true
+//     }
+//     ambientOxygen = event.entity.getAirSupply() / 300.0
+//     currentHalfHeart = roundToPointFive(player.getHealth())
+//     let missingHealth = player.maxHealth - currentHalfHeart
+//     let newDamage = missingHealth - lastMissingHealth
+
+//     if (newDamage > 0) {
+//         remainingBleedVolume += newDamage * halfHeartStorage
+//     }
+
+//     lastMissingHealth = missingHealth
+
+//     remainingBleedVolume = missingHealth * halfHeartStorage
+    
+//     let bleedThisTick = Math.min(
+//         halfHeartPuncture,
+//         remainingBleedVolume
+//     )
+//     blood.body.volume -= bleedThisTick
+//     remainingBleedVolume -= bleedThisTick
+//     blood.body.volume = Math.max(0, blood.body.volume)
+//     let totalBlood = blood.body.volume + blood.head.volume
+//     if (totalBlood > TOTAL_BLOOD) {
+//         blood.body.volume -= (totalBlood - TOTAL_BLOOD)
+//     }
+
+//     const attr = planet_attributes[dimStr] || planet_attributes["minecraft:overworld"]
+//     const radius = planet_radius[dimStr] || 10000
+    
+//     // Grav
+//     const localG = calculateGravity(dimStr, player.y - attr.sea_level, radius, planet_attributes) || 0.098
+    
+//     // Velocity
+//     const rawVel = {
+//         x: (player.x - prevPos.x) / h,
+//         y: (player.y - prevPos.y) / h,
+//         z: (player.z - prevPos.z) / h
+//     }
+
+//     const filterAlpha = 0.2
+//     smoothVel.x = lerp(smoothVel.x, rawVel.x, filterAlpha)
+//     smoothVel.y = lerp(smoothVel.y, rawVel.y, filterAlpha)
+//     smoothVel.z = lerp(smoothVel.z, rawVel.z, filterAlpha)
+
+//     // Acceleration logic
+//     const acc = {
+//         x: (smoothVel.x - prevSmoothVel.x) / h,
+//         y: (smoothVel.y - prevSmoothVel.y) / h,
+//         z: (smoothVel.z - prevSmoothVel.z) / h
+//     }
+//     const properAcc = {
+//         x: acc.x,
+//         y: acc.y + localG,
+//         z: acc.z
+//     }
+//     let speed = Math.sqrt(smoothVel.x*smoothVel.x + smoothVel.y*smoothVel.y + smoothVel.z*smoothVel.z)
+//     let tangentialAccel = speed > 1e-5
+//     ? (properAcc.x*smoothVel.x + properAcc.y*smoothVel.y + properAcc.z*smoothVel.z) / speed
+//     : 0
+//     let tangential_g = tangentialAccel / G_REF
+
+
+//     blood_sim(tangential_g)
+//     ltp(player,"minecraft:bone","Gforce: " + tangential_g.toFixed(3) + "G's")
+//     ltp(player,"minecraft:stick", "Health: " + player.getFoodLevel())
+//     prevSmoothVel.x = smoothVel.x; prevSmoothVel.y = smoothVel.y; prevSmoothVel.z = smoothVel.z
+//     prevPos.x = player.x; prevPos.y = player.y; prevPos.z = player.z
+
+// })
+// function blood_sim(gforce) { // function cause otherwise it takes up space
+
+//     const cardiacOutput = PUMP_RATE * heartHealth
+//     blood.head.pressure += cardiacOutput
+//     blood.body.pressure += cardiacOutput
+
+//     const gEffect = gforce * 0.15
+//     blood.head.pressure -= gEffect
+//     blood.body.pressure += gEffect
+
+//     blood.head.pressure = Math.max(0, blood.head.pressure)
+//     blood.body.pressure = Math.max(0, blood.body.pressure)
+
+//     const pressureDiff = blood.body.pressure - blood.head.pressure
+//     const flow = pressureDiff * VASCULAR_RESISTANCE // Ohms law? More like.. ohms.. suggestion.
+
+//     blood.body.volume -= flow
+//     blood.head.volume += flow
+
+//     blood.head.volume = Math.max(0, blood.head.volume)
+//     blood.body.volume = Math.max(0, blood.body.volume)
+
+//     blood.body.oxygen += (ambientOxygen - blood.body.oxygen) * OXYGEN_DIFFUSION
+//     if (flow > 0) {
+//     const oxygenTransfer = flow * blood.body.oxygen
+//     blood.head.oxygen += oxygenTransfer * 0.001
+//     }
+//     blood.head.oxygen = Math.min(1.0, blood.head.oxygen)
+
+
+//     const brainO2Supply =
+//         blood.head.volume *
+//         blood.head.pressure *
+//         blood.head.oxygen
+
+  
+//     const netO2 = brainO2Supply - BRAIN_O2_CONSUMPTION
+
+//     if (netO2 < 0) {
+//         brainOxygenDebt += Math.abs(netO2)
+//     } else {
+//         brainOxygenDebt = Math.max(0, brainOxygenDebt - netO2)
+//     }
+
+//     blood.head.pressure *= 0.98 // decay
+//     blood.body.pressure *= 0.98
+// }
