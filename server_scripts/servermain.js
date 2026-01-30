@@ -1,7 +1,10 @@
 //start of the superscript
 let itemids=[
     'some_peripherals:radar',
+
     'advancedperipherals:player_detector',
+    'advancedperipherals:weak_automata_core',
+
     'mekanism:mekasuit_bodyarmor',
     'mekanism:mekasuit_boots',
     'mekanism:mekasuit_helmet',
@@ -10,18 +13,38 @@ let itemids=[
     'mekanism:teleportation_core',
     'mekanism:teleporter',
     'mekanism:teleporter_frame',
-    'tacz:ammo',
-    'createbigcannons:flak_autcannon_round',
-    'wrbdrones:shahed136',
-    'wrbdrones:radio',
-    'zerocontact:steel_plate',
-    'zerocontact:si_plate',
-    'zerocontact:bc_plate',
-    'zerocontact:ceramic_plate',
     'mekanism:qio_drive',
     'mekanism:qio_drive_hyper_dense',
     'mekanism:qio_drive_time_dilating',
     'mekanism:qio_drive_supermassive',
+    'mekanism:spatial_io_port',
+    'mekanism:spatial_pylon',
+    'mekanism:spatial_anchor',
+
+    'tacz:ammo',
+
+    'createbigcannons:flak_autcannon_round',
+
+    'wrbdrones:shahed136',
+    'wrbdrones:radio',
+
+    'zerocontact:steel_plate',
+    'zerocontact:si_plate',
+    'zerocontact:bc_plate',
+    'zerocontact:ceramic_plate',
+
+
+    'mekanism:metallurgic_infuser',
+    'mekanismgenerators:heat_generator',
+    'mekanism:basic_universal_cable',
+    'mekanism:basic_chemical_tank',
+    'mekanism:basic_mechanical_pipe',
+
+    'cosmos:detonation_controler',
+    'cosmos:detonation_target',
+
+    'createbigcannons:log_cannon_end',
+    'createbigcannons:log_cannon_chamber'
     
 ]
 let superbomits=[
@@ -41,7 +64,7 @@ let superbomits=[
     'superbwarfare:c4_bomb',
     'superbwarfare:claymore_mine',
     'superbwarfare:blu_43_mine',
-    'superbwarfare:',
+    'superbwarfare:rpg',
     
 ]
 ServerEvents.recipes(event =>{
@@ -50,8 +73,10 @@ for(var i=0;i<itemids.length;i++){
     event.remove({output: itemids[i] })
 }
 
-event.remove({mod: vs_tournament})
+event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: vs_tournament})
 //note allow ship assembler
+
+event.remove({mod:cosmos})
 
 for(var i=0;i<superbomits.length;i++){
     event.remove({ not: { output:superbomits[i] }, mod: superbwarfare })
@@ -72,13 +97,38 @@ for(var i=0;i<gunids.length;i++){
 });
 //MAKE RECIPES FOR
 //flak shells
-    //mek storage
-    //ae2 spatial
+
+    // MEK FACTORIES WITH TFMG
+    // 'mekanism:basic__factory'  , smelting,enriching,crushing,compressing,combining,purifying,injecting,infusing,sawing
+
     //ae2 autocrafting
-    //gravitron
+    //ae2 all the changes we really need to do whatever they are
+
+    //gravitron-weaken
+
+    //make trackwork wheels cheaper, part of vehicle buffing
+
+    //mek generation remove? solar, heat(fs but recip or no?), gas burning, bio
+
     //zero contact plate steel si bc ceramic (process, diamond+quartz+2 zero contact steel sheets)
     //all zero contact armor
     //zero contact helmets (steel helmet+zero contact steel sheets)
     //controlcraft camera (exposure camera+mech bearing)
     //controlcraft camera link (exposure camera+create link)
-    //air thrusters?
+    //air thrusters? starlance
+
+    //ore excav recipe change (amethyst for wanderlite matrix bc difficulty)
+
+    //tinkers blocks(tp, op stuff)
+
+    //beyond oxygen see how it works, o2 bubble gen
+
+    //create nuclear???
+
+    //soph backpacks, remove high up upgrades
+
+    //ender transmission
+
+    //add radar fuze recipe
+
+    //all the cbc changes (log cannons pure craft)
