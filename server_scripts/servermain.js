@@ -77,10 +77,18 @@ let superbomits=[
     'superbwarfare:rpg',
     
 ]
+
+let noguns=[
+
+]
 ServerEvents.recipes(event =>{
 
 for(var i=0;i<itemids.length;i++){
     event.remove({output: itemids[i] })
+}
+
+for(var i=0;i<noguns.length;i++){
+    event.remove({output: noguns[i] })
 }
 
 event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: vs_tournament})
