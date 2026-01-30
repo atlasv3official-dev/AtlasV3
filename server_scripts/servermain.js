@@ -117,7 +117,7 @@ for(var i=0;i<superbomits.length;i++){
 
 
 //cbc changes
-event.blasting('minecraft:iron_ingot', 'createbigcannons:cast_iron_ingot' )
+event.blasting( 'createbigcannons:cast_iron_ingot','minecraft:iron_ingot' )
 //logs
 event.shaped(
   Item.of(    'createbigcannons:log_cannon_end', 1), 
@@ -165,7 +165,7 @@ event.shaped(
 A: 'createbigcannons:cast_iron_block'  }
 )
 event.shaped(
-  Item.of('createbigcannons:cast_iron_cannon_quickfiring_breech', 1), 
+  Item.of('createbigcannons:cast_iron_quickfiring_breech', 1), 
   [
     'A A',
     'AAA', 
@@ -177,7 +177,7 @@ A: 'createbigcannons:cast_iron_block',
   }
 )
 event.shaped(
-  Item.of('createbigcannons:cast_iron_cannon_sliding_breech', 1), 
+  Item.of('createbigcannons:cast_iron_sliding_breech', 1), 
   [
     'A A',
     'AAA', 
