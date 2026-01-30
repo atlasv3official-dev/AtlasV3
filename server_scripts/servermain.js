@@ -53,8 +53,22 @@ let itemids=[
     'cosmos:detonation_controler',
     'cosmos:detonation_target',
 
+    'createbigcannons:cast_iron_ingot',
+    //logs craft
     'createbigcannons:log_cannon_end',
-    'createbigcannons:log_cannon_chamber'
+    'createbigcannons:log_cannon_chamber',
+    //cast iron, blast to make cast iron and then craft
+    'createbigcannons:cast_iron_cannon_end',
+    'createbigcannons:cast_iron_cannon_sliding_breech',
+    'createbigcannons:cast_iron_cannon_quickfiring_breech',   
+    'createbigcannons:cast_iron_cannon_chamber',
+    'createbigcannons:cast_iron_cannon_barrel',
+    //bronze, normal make then complex process
+    'createbigcannons:bronze_cannon_end',
+    'createbigcannons:bronze_cannon_sliding_breech',
+    'createbigcannons:bronze_cannon_quickfiring_breech',   
+    'createbigcannons:bronze_cannon_chamber',
+    'createbigcannons:bronze_cannon_barrel',  
     
 ]
 let superbomits=[
@@ -100,6 +114,93 @@ for(var i=0;i<superbomits.length;i++){
     event.remove({ not: { output:superbomits[i] }, mod: superbwarfare })
 }
 
+
+
+//cbc changes
+event.blasting('minecraft:iron_ingot', 'createbigcannons:cast_iron_ingot' )
+//logs
+event.shaped(
+  Item.of(    'createbigcannons:log_cannon_end', 1), 
+  [
+    'A A',
+    'AAA', 
+    ' A '
+  ],
+  {
+    A: 'minecraft:oak_log'
+  }
+)
+event.shaped(
+  Item.of('createbigcannons:log_cannon_chamber', 1), 
+  [
+    'A A',
+    'A A', 
+    'A A'
+  ],
+  {
+    A: 'minecraft:oak_log'
+  }
+)
+
+//cast iron
+event.shaped(
+  Item.of('createbigcannons:cast_iron_cannon_end', 1), 
+  [
+    'A A',
+    'AAA', 
+    ' A '
+  ],
+  {
+    A: 'createbigcannons:cast_iron_block'
+  }
+)
+event.shaped(
+  Item.of('createbigcannons:cast_iron_cannon_chamber', 1), 
+  [
+    'A A',
+    'A A', 
+    'A A'
+  ],
+  {
+A: 'createbigcannons:cast_iron_block'  }
+)
+event.shaped(
+  Item.of('createbigcannons:cast_iron_cannon_quickfiring_breech', 1), 
+  [
+    'A A',
+    'AAA', 
+    'ABA'
+  ],
+  {
+A: 'createbigcannons:cast_iron_block',  
+  B: 'createbigcannons:quickfiring_mechanism'
+  }
+)
+event.shaped(
+  Item.of('createbigcannons:cast_iron_cannon_sliding_breech', 1), 
+  [
+    'A A',
+    'AAA', 
+    'ABA'
+  ],
+  {
+A: 'createbigcannons:cast_iron_block',   
+ B: 'create:mechanical_piston'
+  }
+)
+event.shaped(
+  Item.of('createbigcannons:cast_iron_cannon_barrel', 1), 
+  [
+    'AA ',
+    'AA ', 
+    'AA '
+  ],
+  {
+    A: 'createbigcannons:cast_iron_block'
+  }
+)
+
+//bronze
 
 });
 
