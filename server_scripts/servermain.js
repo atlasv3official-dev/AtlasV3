@@ -39,6 +39,16 @@ let itemids=[
     'mekanism:basic_universal_cable',
     'mekanism:basic_chemical_tank',
     'mekanism:basic_mechanical_pipe',
+    //'mekanism:basic__factory', 
+    'mekanism:basic_smelting_factory',
+    'mekanism:basic_enriching_factory',
+    'mekanism:basic_crushing_factory',
+    'mekanism:basic_compressing_factory',
+    'mekanism:basic_combining_factory',
+    'mekanism:basic_purifying_factory',
+    'mekanism:basic_injecting_factory',
+    'mekanism:basic_infusing_factory',
+    'mekanism:basic_sawing_factory',
 
     'cosmos:detonation_controler',
     'cosmos:detonation_target',
@@ -99,7 +109,7 @@ for(var i=0;i<gunids.length;i++){
 //flak shells
 
     // MEK FACTORIES WITH TFMG
-    // 'mekanism:basic__factory'  , smelting,enriching,crushing,compressing,combining,purifying,injecting,infusing,sawing
+    // 'mekanism:basic__factory', 'mekanism:basic__factory'smelting,'mekanism:basic_enriching_factory','mekanism:basic_crushing_factory','mekanism:basic_compressing_factory','mekanism:basic_combining_factory','mekanism:basic_purifying_factory','mekanism:basic_injecting_factory','mekanism:basic_infusing_factory','mekanism:basic_sawing_factory'
 
     //ae2 autocrafting
     //ae2 all the changes we really need to do whatever they are
@@ -113,8 +123,10 @@ for(var i=0;i<gunids.length;i++){
     //zero contact plate steel si bc ceramic (process, diamond+quartz+2 zero contact steel sheets)
     //all zero contact armor
     //zero contact helmets (steel helmet+zero contact steel sheets)
+
     //controlcraft camera (exposure camera+mech bearing)
     //controlcraft camera link (exposure camera+create link)
+    
     //air thrusters? starlance
 
     //ore excav recipe change (amethyst for wanderlite matrix bc difficulty)
@@ -131,4 +143,4 @@ for(var i=0;i<gunids.length;i++){
 
     //add radar fuze recipe
 
-    //all the cbc changes (log cannons pure craft)
+    //all the cbc changes (log cannons pure craft)(cast iron from blasting iron, simple process)(brass from normal making, complex process)
