@@ -105,14 +105,14 @@ for(var i=0;i<noguns.length;i++){
     event.remove({output: noguns[i] })
 }
 
-//event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: vs_tournament})
+event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: vs_tournament})
 //note allow ship assembler
 
-//event.remove({mod:cosmos})
+event.remove({mod:cosmos})
 
-//for(var i=0;i<superbomits.length;i++){
-    //event.remove({ not: { output:superbomits[i] }, mod: superbwarfare })
-//}
+for(var i=0;i<superbomits.length;i++){
+    event.remove({ not: { output:superbomits[i] }, mod: superbwarfare })
+}
 
 
 
