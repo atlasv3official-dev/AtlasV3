@@ -384,7 +384,7 @@ event.recipes.create.sequenced_assembly(
 });
 
 let gunids=[]
-TaCZServerEvents.gunIndexLoad((event) => {
+TaCZServerEvents.gunIndexLoad(event => {
 const id = event.getId().toString();
 for(var i=0;i<gunids.length;i++){
    if(id==gunids[1]){
@@ -393,6 +393,8 @@ for(var i=0;i<gunids.length;i++){
 }
     
 });
+
+
 //MAKE RECIPES FOR
 //flak shells
 
