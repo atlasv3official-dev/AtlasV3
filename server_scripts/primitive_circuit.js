@@ -124,7 +124,6 @@ ServerEvents.recipes(event => {
             "nbt": NBT
         }
     ]})
-
   event.custom({ // Curing (1st Instance)
   "type": "createbigcannons:melting",
   "conditions": [
@@ -374,4 +373,33 @@ event.custom({ // Coated Board (or whatever i am calling it)
       "nbt": {coated: true, CustomModelData: 1}
     }
   ]})
+event.custom({
+  "type": "create:mechanical_crafting",
+  "acceptMirrored": true,
+  "key": {
+    "C": {
+      "item": "tfmg:copper_wire"
+    },
+    "D": {
+      "item": "minecraft:iron_nugget"
+    },
+    "M": {
+      "item": "kubejs:conductive_pellet"
+    },
+    "S": {
+      "tag": "destroy:plastics/rigid"
+    }
+  },
+  "pattern": [
+    " C   ",
+    "SMSSS",
+    "DDDDD",
+    "SMSSS",
+    " C   "
+  ],
+  "result": {
+    "count": 1,
+    "item": "kubejs:modified_breadboard"
+  }
+})
 })
