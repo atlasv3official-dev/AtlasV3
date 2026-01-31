@@ -59,14 +59,14 @@ let itemids=[
     'createbigcannons:log_cannon_chamber',
     //cast iron, blast to make cast iron and then craft
     'createbigcannons:cast_iron_cannon_end',
-    'createbigcannons:cast_iron_cannon_sliding_breech',
-    'createbigcannons:cast_iron_cannon_quickfiring_breech',   
+    'createbigcannons:cast_iron_sliding_breech',
+    'createbigcannons:cast_iron_quickfiring_breech',   
     'createbigcannons:cast_iron_cannon_chamber',
     'createbigcannons:cast_iron_cannon_barrel',
     //bronze, normal make then complex process
     'createbigcannons:bronze_cannon_end',
-    'createbigcannons:bronze_cannon_sliding_breech',
-    'createbigcannons:bronze_cannon_quickfiring_breech',   
+    'createbigcannons:bronze_sliding_breech',
+    'createbigcannons:bronze_quickfiring_breech',   
     'createbigcannons:bronze_cannon_chamber',
     'createbigcannons:bronze_cannon_barrel',  
     
@@ -105,14 +105,14 @@ for(var i=0;i<noguns.length;i++){
     event.remove({output: noguns[i] })
 }
 
-event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: vs_tournament})
+//event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: vs_tournament})
 //note allow ship assembler
 
-event.remove({mod:cosmos})
+//event.remove({mod:cosmos})
 
-for(var i=0;i<superbomits.length;i++){
-    event.remove({ not: { output:superbomits[i] }, mod: superbwarfare })
-}
+//for(var i=0;i<superbomits.length;i++){
+    //event.remove({ not: { output:superbomits[i] }, mod: superbwarfare })
+//}
 
 
 
@@ -223,11 +223,13 @@ event.shaped(
 )
 
 
+
+
 //bronze(brass actually)
-let ingot='createbigcannons:brass_ingot'
-let sheet='createbigcannons:brass_sheet'
-let block='createbigcannons:brass_block'
-let scrap='createbigcannons:brass_scrap'
+let ingot='create:brass_ingot'
+let sheet='create:brass_sheet'
+let block='create:brass_block'
+let scrap='create:brass_nugget'
 
 let t1='createbigcannons:unbored_bronze_cannon_chamber'
 //bronze chamber
@@ -240,7 +242,9 @@ event.recipes.create.sequenced_assembly(
         ingot,
         scrap
     ],
+
     block,
+    
     [
         event.recipes.create.deploying(t1,[t1,sheet]),
         event.recipes.create.deploying(t1,[t1,sheet]),
@@ -249,7 +253,9 @@ event.recipes.create.sequenced_assembly(
         event.recipes.create.pressing(t1,t1),
         event.recipes.create.cutting(t1,t1)
     ]
-).transitionalItem(t1).loops(4)
+)
+.transitionalItem(t1)
+.loops(4)
 
 let t2='createbigcannons:unbored_bronze_cannon_barrel'
 //bronze barrel
@@ -376,7 +382,7 @@ event.recipes.create.sequenced_assembly(
 ).transitionalItem(t7).loops(4)
 
 });
-//note its biggy
+
 let gunids=[]
 TaCZServerEvents.gunIndexLoad((event) => {
 const id = event.getId().toString();
