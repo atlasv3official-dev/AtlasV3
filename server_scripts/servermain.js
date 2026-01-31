@@ -165,18 +165,6 @@ event.shaped(
 A: 'createbigcannons:cast_iron_block'  }
 )
 event.shaped(
-  Item.of('createbigcannons:cast_iron_quickfiring_breech', 1), 
-  [
-    'A A',
-    'AAA', 
-    'ABA'
-  ],
-  {
-A: 'createbigcannons:cast_iron_block',  
-  B: 'createbigcannons:quickfiring_mechanism'
-  }
-)
-event.shaped(
   Item.of('createbigcannons:cast_iron_sliding_breech', 1), 
   [
     'A A',
@@ -199,8 +187,193 @@ event.shaped(
     A: 'createbigcannons:cast_iron_block'
   }
 )
+event.shaped(
+    Item.of('createbigcannons:cast_iron_autocannon_breech'),
+    [
+    ' A ',
+    'A A', 
+    'A A'
+  ],
+  {
+    A: 'createbigcannons:cast_iron_block'
+  }
+)
+event.shaped(
+    Item.of('createbigcannons:cast_iron_autocannon_recoil_spring'),
+    [
+    ' A ',
+    'ABA', 
+    'ABA'
+  ],
+  {
+    A: 'createbigcannons:cast_iron_block',
+    B: 'createbigcannons:recoil_spring'
+  }
+)
+event.shaped(
+    Item.of('createbigcannons:cast_iron_autocannon_barrel'),
+    [
+    ' A ',
+    ' A ', 
+    ' A '
+  ],
+  {
+    A: 'createbigcannons:cast_iron_block'
+  }
+)
 
-//bronze
+
+//bronze(brass actually)
+let ingot='createbigcannons:brass_ingot'
+let sheet='createbigcannons:brass_sheet'
+let block='createbigcannons:brass_block'
+let scrap='createbigcannons:brass_scrap'
+
+let t1='createbigcannons:unbored_bronze_cannon_chamber'
+//bronze chamber
+event.recipes.create.sequenced_assembly(
+    [
+        Item.of('createbigcannons:bronze_cannon_chamber').withChance(50),
+        Item.of('createbigcannons:bronze_cannon_barrel').withChance(10),
+        block,
+        sheet,
+        ingot,
+        scrap
+    ],
+    block,
+    [
+        event.recipes.create.deploying(t1,[t1,sheet]),
+        event.recipes.create.deploying(t1,[t1,sheet]),
+        event.recipes.create.deploying(t1,[t1,sheet]),
+        event.recipes.create.deploying(t1,[t1,sheet]),
+        event.recipes.create.pressing(t1,t1),
+        event.recipes.create.cutting(t1,t1)
+    ]
+).transitionalItem(t1).loops(4)
+
+let t2='createbigcannons:unbored_bronze_cannon_barrel'
+//bronze barrel
+event.recipes.create.sequenced_assembly(
+    [
+        Item.of('createbigcannons:bronze_cannon_barrel').withChance(50),
+        Item.of('createbigcannons:bronze_cannon_chamber').withChance(10),
+        block,
+        sheet,
+        ingot,
+        scrap
+    ],
+    block,
+    [
+        event.recipes.create.deploying(t2,[t2,ingot]),
+        event.recipes.create.deploying(t2,[t2,ingot]),
+        event.recipes.create.deploying(t2,[t2,ingot]),
+        event.recipes.create.deploying(t2,[t2,ingot]),
+        event.recipes.create.pressing(t2,t2),
+        event.recipes.create.cutting(t2,t2),
+        event.recipes.create.cutting(t2,t2)
+    ]
+).transitionalItem(t2).loops(4)
+
+let t3='createbigcannons:bronze_sliding_breechblock'
+//bronze cannon end
+event.recipes.create.sequenced_assembly(
+    [
+        Item.of('createbigcannons:bronze_cannon_end').withChance(50),
+        block,
+        sheet,
+        ingot,
+        scrap
+    ],
+    block,
+    [
+        event.recipes.create.deploying(t3,[t3,block]),
+        event.recipes.create.cutting(t3,t3),
+        event.recipes.create.deploying(t3,[t3,block]),
+        event.recipes.create.cutting(t3,t3),
+        event.recipes.create.pressing(t3,t3),
+        event.recipes.create.cutting(t3,t3),
+    ]
+).transitionalItem(t3).loops(4)
+
+let t4='createbigcannons:unbored_bronze_sliding_breech'
+//bronze sliding breech
+event.recipes.create.sequenced_assembly(
+    [
+        Item.of('createbigcannons:bronze_sliding_breech').withChance(50),
+        Item.of('createbigcannons:bronze_cannon_chamber').withChance(10),
+        block,
+        sheet,
+        ingot,
+        scrap
+    ],
+    block,
+    [
+        event.recipes.create.deploying(t4,[t4,sheet]),
+        event.recipes.create.deploying(t4,[t4,sheet]),
+        event.recipes.create.deploying(t4,[t4,ingot]),
+        event.recipes.create.deploying(t4,[t4,'create:shaft']),
+        event.recipes.create.pressing(t4,t4),
+        event.recipes.create.cutting(t4,t4)
+    ]
+).transitionalItem(t4).loops(4)
+
+let t5='createbigcannons:unbored_bronze_autocannon_barrel'
+//bronze autocannon barrel
+event.recipes.create.sequenced_assembly(
+    [
+        Item.of('createbigcannons:bronze_autocannon_barrel').withChance(50),
+        ingot,
+        sheet,
+        scrap
+    ],
+    ingot,
+    [
+        event.recipes.create.deploying(t5,[t5,ingot]),
+        event.recipes.create.deploying(t5,[t5,ingot]),
+        event.recipes.create.pressing(t5,t5),
+        event.recipes.create.cutting(t5,t5)
+    ]
+).transitionalItem(t5).loops(4)
+
+let t6='createbigcannons:unbored_bronze_autocannon_breech'
+//bronze autocannon breech
+event.recipes.create.sequenced_assembly(
+    [
+        Item.of('createbigcannons:bronze_autocannon_breech').withChance(50),
+        block,
+        ingot,
+        sheet,
+        scrap
+    ],
+    block,
+    [
+        event.recipes.create.deploying(t6,[t6,ingot]),
+        event.recipes.create.deploying(t6,[t6,ingot]),
+        event.recipes.create.deploying(t6,[t6,ingot]),
+        event.recipes.create.pressing(t6,t6),
+        event.recipes.create.cutting(t6,t6)
+    ]
+).transitionalItem(t6).loops(4)
+
+let t7='createbigcannons:unbored_bronze_autocannon_recoil_spring'
+//bronze autocannon rcs
+event.recipes.create.sequenced_assembly(
+    [
+        Item.of('createbigcannons:bronze_autocannon_recoil_spring').withChance(50),
+        Item.of('createbigcannons:bronze_autocannon_barrel').withChance(10),
+        ingot,
+        sheet,
+        scrap
+    ],
+    ingot,
+    [
+        event.recipes.create.deploying(t7,[t7,ingot]),
+        event.recipes.create.deploying(t7,[t7,ingot]),
+        event.recipes.create.deploying(t7,[t7,'createbigcannons:recoil_spring']),
+        event.recipes.create.pressing(t7,t7),
+        event.recipes.create.cutting(t7,t7)
+    ]
+).transitionalItem(t7).loops(4)
 
 });
 
@@ -251,5 +424,3 @@ for(var i=0;i<gunids.length;i++){
     //ender transmission
 
     //add radar fuze recipe
-
-    //all the cbc changes (log cannons pure craft)(cast iron from blasting iron, simple process)(brass from normal making, complex process)
