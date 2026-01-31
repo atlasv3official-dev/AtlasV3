@@ -118,7 +118,7 @@ for(var i=0;i<tournamentomits.length;i++){
 }
 
 
-event.remove({mod:'cosmos'})
+event.remove({not:{output:['','']},mod:'cosmos'})
 event.remove({not: {output:'createendertransmission:chunk_loader'},mod:'createendertransmission'})
 
 for(var i=0;i<superbomits.length;i++){
