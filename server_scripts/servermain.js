@@ -376,7 +376,7 @@ event.recipes.create.sequenced_assembly(
 ).transitionalItem(t7).loops(4)
 
 });
-
+//note its biggy
 let gunids=[]
 TaCZServerEvents.gunIndexLoad((event) => {
 const id = event.getId().toString();
