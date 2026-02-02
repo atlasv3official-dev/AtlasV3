@@ -4,6 +4,27 @@ ServerEvents.recipes(event => {
       "{Pattern:-27642s}": {type: "Sequence", CustomModelData: 2}, // Sequence
       "{Pattern:-12278s}": {type: "Relay", CustomModelData: 3} // Relay
     }
+  event.custom({ // Liquid Resin
+    "type": "create:mixing",
+    "heatRequirement": "heated",
+    "ingredients": [
+        {
+            "item": "createpropulsion:pine_resin"
+        },
+        {
+            "item": "createpropulsion:pine_resin"
+        },
+        {
+            "amount": 40,
+            "fluid": "tfmg:crude_oil"
+        }
+    ],
+    "results": [
+        {
+            "amount": 150,
+            "fluid": "kubejs:liquid_resin"
+        }
+    ]})
   event.custom({ // Phenolic Paper
   "type": "create:filling",
   "ingredients": [

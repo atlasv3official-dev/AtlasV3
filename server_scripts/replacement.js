@@ -25,6 +25,7 @@ ServerEvents.recipes(event => {
     event.remove({mod:"ae2"})
     // Control Circuit
     event.remove({ output: 'mekanism:basic_control_circuit' })
+    event.custom({"type":"minecraft:crafting_shaped","key":{"#":{"item":"minecraft:furnace"},"I":{"tag":"forge:ingots/iron"},"O":{"tag":"forge:ingots/osmium"},"R":{"tag":"forge:dusts/redstone"}},"pattern":["I#I","ROR","I#I"],"result":{"item":"mekanism:metallurgic_infuser"}})
     event.custom({"type":"mekanism:metallurgic_infusing","chemicalInput":{"amount":20,"tag":"mekanism:redstone"},"itemInput":{"ingredient":{"type": "forge:nbt","item":"kubejs:primitive_circuit_board","nbt": {type: "Control"}}},"output":{"item":"mekanism:basic_control_circuit"}})
 
     // Basic Motor Extension
@@ -76,7 +77,6 @@ ServerEvents.recipes(event => {
     event.replaceInput({output: "create:contraption_controls"}, "create:electron_tube", control)
     event.replaceInput({output: "create:sequenced_gearshift"}, "create:electron_tube", control)
     event.replaceInput({output: "destroy:keypunch"}, "create:electron_tube", {'type': 'forge:nbt','item':'kubejs:modified_breadboard','nbt':{circuits:[1,0,1],CustomModelData:5}})
-
     // PROGRESSION LOCKED ITEMS:
     for (const id of progressionLockedItems) {
       event.remove({output: id})
