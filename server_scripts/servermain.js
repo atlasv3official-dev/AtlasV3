@@ -21,8 +21,6 @@ let itemids=[
     'mekanism:spatial_pylon',
     'mekanism:spatial_anchor',
 
-    'tacz:ammo',
-
     'createbigcannons:flak_autcannon_round',
 
     'wrbdrones:shahed136',
@@ -92,6 +90,16 @@ let superbomits=[
     
 ]
 
+let tournamentomits=[
+  'vs_tournament:spinner',
+'vs_tournament:seat',
+'vs_tournament:sensor',
+'vs_tournament:explosive_instant_small',
+'vs_tournament:explosive_instant_medium',
+'vs_tournament:explosive_staged_small',
+'vs_tournament:ship_assembler'
+]
+
 let noguns=[
 
 ]
@@ -105,13 +113,16 @@ for(var i=0;i<noguns.length;i++){
     event.remove({output: noguns[i] })
 }
 
-event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: vs_tournament})
-//note allow ship assembler
+for(var i=0;i<tournamentomits.length;i++){
+    event.remove({ not: { output:tournamentomits[i] }, mod: 'vs_tournament' })
+}
 
-event.remove({mod:cosmos})
+
+event.remove({not:{output:['','']},mod:'cosmos'})
+event.remove({not: {output:'createendertransmission:chunk_loader'},mod:'createendertransmission'})
 
 for(var i=0;i<superbomits.length;i++){
-    event.remove({ not: { output:superbomits[i] }, mod: superbwarfare })
+    event.remove({ not: { output:superbomits[i] }, mod: 'superbwarfare' })
 }
 
 
