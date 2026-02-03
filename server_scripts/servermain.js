@@ -67,6 +67,9 @@ let itemids=[
     'createbigcannons:bronze_quickfiring_breech',   
     'createbigcannons:bronze_cannon_chamber',
     'createbigcannons:bronze_cannon_barrel',  
+
+    //soph backpacks upgrades
+    'sophisticatedbackpacks:upgrade_base'
     
 ]
 let superbomits=[
@@ -411,6 +414,9 @@ for(var i=0;i<gunids.length;i++){
 
     // MEK FACTORIES WITH TFMG
     // 'mekanism:basic__factory', 'mekanism:basic__factory'smelting,'mekanism:basic_enriching_factory','mekanism:basic_crushing_factory','mekanism:basic_compressing_factory','mekanism:basic_combining_factory','mekanism:basic_purifying_factory','mekanism:basic_injecting_factory','mekanism:basic_infusing_factory','mekanism:basic_sawing_factory'
+
+    //ALRIGHT BUCKAROOS TACZ AMMO TIME, IT'S JUST THE LAST STRETCH FOR EVERYTHING!!! COMBINE ALL THE BULLETS TO ALL THE HEADS
+
 
     //ae2 autocrafting
     //ae2 all the changes we really need to do whatever they are
