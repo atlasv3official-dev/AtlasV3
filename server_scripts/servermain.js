@@ -99,8 +99,7 @@ let tournamentomits=[
 'vs_tournament:sensor',
 'vs_tournament:explosive_instant_small',
 'vs_tournament:explosive_instant_medium',
-'vs_tournament:explosive_staged_small',
-'vs_tournament:ship_assembler'
+'vs_tournament:explosive_staged_small'
 ]
 
 let noguns=[
