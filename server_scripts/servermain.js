@@ -21,6 +21,8 @@ let itemids=[
     'mekanism:spatial_pylon',
     'mekanism:spatial_anchor',
 
+    'tacz:ammo',
+
     'createbigcannons:flak_autcannon_round',
 
     'wrbdrones:shahed136',
@@ -68,8 +70,17 @@ let itemids=[
     'createbigcannons:bronze_cannon_chamber',
     'createbigcannons:bronze_cannon_barrel',  
 
+
+      //trackwork
+    'trackwork:large_simple_wheel',
+    'trackwork:simple_wheel',
+    'trackwork:med_simple_wheel',
+    'trackwork:small_simple_wheel',
+    'trackwork:oleo_wheel',
+
+    
     //soph backpacks upgrades
-    'sophisticatedbackpacks:upgrade_base'
+    'sophisticatedbackpacks:upgrade_base',
     
 ]
 let superbomits=[
@@ -93,15 +104,6 @@ let superbomits=[
     
 ]
 
-let tournamentomits=[
-  'vs_tournament:spinner',
-'vs_tournament:seat',
-'vs_tournament:sensor',
-'vs_tournament:explosive_instant_small',
-'vs_tournament:explosive_instant_medium',
-'vs_tournament:explosive_staged_small'
-]
-
 let noguns=[
 
 ]
@@ -115,20 +117,50 @@ for(var i=0;i<noguns.length;i++){
     event.remove({output: noguns[i] })
 }
 
-for(var i=0;i<tournamentomits.length;i++){
-    event.remove({ not: { output:tournamentomits[i] }, mod: 'vs_tournament' })
-}
+event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: 'vs_tournament'})
+//note allow ship assembler
 
-
-event.remove({not:{output:['','']},mod:'cosmos'})
-event.remove({not: {output:'createendertransmission:chunk_loader'},mod:'createendertransmission'})
-
+event.remove({mod:'cosmos'})
+event.remove({mod: 'ae2'})
 for(var i=0;i<superbomits.length;i++){
     event.remove({ not: { output:superbomits[i] }, mod: 'superbwarfare' })
 }
 
+//tacz ammos
+   event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:9mm"}),
+[ "tacz_c:bullet",  "tacz_c:casefull_9mm",   ])
 
 
+    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:45acp"}),
+[ "tacz_c:bullet", "tacz_c:casefull_45acp","minecraft:copper_nugget",   ])
+
+
+
+    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:357mag"}),
+[ "tacz_c:bullet", "minecraft:copper_ingot","tacz_c:casefull_357mag",   ])
+
+    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "sfms:30scp"}),
+["minecraft:iron_nugget","tacz_c:bullet", "minecraft:amethyst_shard","tacz_c:casefull_3006",   ])
+
+
+
+    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:50ae"}),
+["minecraft:copper_nugget","tacz_c:casefull_50ae", "tacz_c:bullet","minecraft:iron_nugget",   ])
+
+    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:46*30"}),
+["tacz_c:casefull_4630","minecraft:copper_ingot", "minecraft:iron_nugget","tacz_c:bullet",   ])
+
+
+    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:556x45"}),
+["minecraft:iron_ingot","tacz_c:large_bullet", "spelunkery:lapis_lazuli_shard","tacz_c:casefull_55645",   ])
+
+    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:762x39"}),
+["minecraft:iron_ingot","tacz_c:large_bullet", "minecraft:iron_ingot","tacz_c:casefull_76239",   ])
+
+    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:58x42"}),
+["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:lapis_lazuli","tacz_c:casefull_5842",   ])
+event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:308"}),
+["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:lapis_lazuli","tacz_c:casefull_308",   ])
 //cbc changes
 event.blasting( 'createbigcannons:cast_iron_ingot','minecraft:iron_ingot' )
 //logs
@@ -201,7 +233,7 @@ event.shaped(
   }
 )
 event.shaped(
-    Item.of('createbigcannons:cast_iron_autocannon_breech'),
+    Item.of('createbigcannons:cast_iron_autocannon_breech',1),
     [
     ' A ',
     'A A', 
@@ -212,7 +244,7 @@ event.shaped(
   }
 )
 event.shaped(
-    Item.of('createbigcannons:cast_iron_autocannon_recoil_spring'),
+    Item.of('createbigcannons:cast_iron_autocannon_recoil_spring',1),
     [
     ' A ',
     'ABA', 
@@ -224,7 +256,7 @@ event.shaped(
   }
 )
 event.shaped(
-    Item.of('createbigcannons:cast_iron_autocannon_barrel'),
+    Item.of('createbigcannons:cast_iron_autocannon_barrel',1),
     [
     ' A ',
     ' A ', 
@@ -394,6 +426,68 @@ event.recipes.create.sequenced_assembly(
     ]
 ).transitionalItem(t7).loops(4)
 
+//trackwork
+  event.shaped(
+    Item.of('trackwork:small_simple_wheel',1),
+    [
+      'AAA',
+      'ABA',
+      'AAA'
+    ],
+    {
+      A:'minecraft:dried_kelp',
+      B:'create:gearbox'
+    }
+  )
+  event.shaped(
+    Item.of('trackwork:med_simple_wheel',1),
+    [
+      'AAA',
+      'ABA',
+      'AAA'
+    ],
+    {
+      A:'minecraft:dried_kelp',
+      B:'trackwork:small_simple_wheel'
+    }
+  )
+  event.shaped(
+    Item.of('trackwork:simple_wheel',1),
+    [
+      'AAA',
+      'ABA',
+      'AAA'
+    ],
+    {
+      A:'minecraft:dried_kelp',
+      B:'trackwork:med_simple_wheel'
+    }
+  )
+  event.shaped(
+    Item.of('trackwork:large_simple_wheel',1),
+    [
+      'AAA',
+      'ABA',
+      'AAA'
+    ],
+    {
+      A:'minecraft:dried_kelp',
+      B:'trackwork:simple_wheel'
+    }
+  )
+  event.shaped(
+    Item.of('trackwork:oleo_wheel',1),
+    [
+      '   ',
+      ' A ',
+      'BAB'
+    ],
+    {
+      A:'trackwork:small_simple_wheel',
+      B:'create:shaft'
+    }
+  )
+
 });
 
 let gunids=[]
@@ -413,9 +507,6 @@ for(var i=0;i<gunids.length;i++){
 
     // MEK FACTORIES WITH TFMG
     // 'mekanism:basic__factory', 'mekanism:basic__factory'smelting,'mekanism:basic_enriching_factory','mekanism:basic_crushing_factory','mekanism:basic_compressing_factory','mekanism:basic_combining_factory','mekanism:basic_purifying_factory','mekanism:basic_injecting_factory','mekanism:basic_infusing_factory','mekanism:basic_sawing_factory'
-
-    //ALRIGHT BUCKAROOS TACZ AMMO TIME, IT'S JUST THE LAST STRETCH FOR EVERYTHING!!! COMBINE ALL THE BULLETS TO ALL THE HEADS
-
 
     //ae2 autocrafting
     //ae2 all the changes we really need to do whatever they are
