@@ -192,6 +192,9 @@ for(var i=0;i<superbomits.length;i++){
     event.shapeless(Item.of("tacz:ammo",15).withNBT({AmmoId: "tacz:45acp"}),
 [ "tacz_c:bullet", "tacz_c:casefull_45acp","minecraft:copper_nugget",   ])
 
+    event.shapeless(Item.of("tacz:ammo",15).withNBT({AmmoId: "tacz:4570"}),
+[ "tacz_c:bullet", "tacz_c:casefull_4570","minecraft:gold_nugget",   ])
+
     event.shapeless(Item.of("tacz:ammo",15).withNBT({AmmoId: "tacz:357mag"}),
 [ "tacz_c:bullet", "minecraft:copper_ingot","tacz_c:casefull_357mag",   ])
 
