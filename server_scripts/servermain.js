@@ -107,33 +107,6 @@ let superbomits=[
 let noguns=[
 
 ]
-ServerEvents.recipes(event =>{
-
-for(var i=0;i<itemids.length;i++){
-    event.remove({output: itemids[i] })
-}
-
-for(var i=0;i<noguns.length;i++){
-    event.remove({output: noguns[i] })
-}
-
-event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: 'vs_tournament'})
-//note allow ship assembler
-
-event.remove({mod:'cosmos'})
-event.remove({mod: 'ae2'})
-for(var i=0;i<superbomits.length;i++){
-    event.remove({ not: { output:superbomits[i] }, mod: 'superbwarfare' })
-}
-
-//tacz ammos
-   event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:9mm"}),
-[ "tacz_c:bullet",  "tacz_c:casefull_9mm",   ])
-
-
-    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:45acp"}),
-[ "tacz_c:bullet", "tacz_c:casefull_45acp","minecraft:copper_nugget",   ])
-
 
 
     event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:357mag"}),
@@ -159,8 +132,95 @@ for(var i=0;i<superbomits.length;i++){
 
     event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:58x42"}),
 ["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:lapis_lazuli","tacz_c:casefull_5842",   ])
-event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:308"}),
+
+function bulletRecipeMaker(result,tip,joint,body,event){
+  event.shaped(
+    Item.of('tacz:ammo',3).withNBT({AmmoID:result}),
+    [
+      'AAA',
+      ' B ',
+      'CCC'
+    ],
+    {
+      A:tip,
+      B:joint,
+      C:+ body
+    }
+  )
+}
+
+let bulletrecipes=[
+  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
+  ['tacz:45acp','tacz_c:bullet','minecraft:copper_ingot','tacz_c:casefull_45acp'],
+  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_3006'],
+  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
+  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
+  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
+  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
+  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
+  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
+
+]
+
+
+
+
+ServerEvents.recipes(event =>{
+
+for(var i=0;i<itemids.length;i++){
+    event.remove({output: itemids[i] })
+}
+
+for(var i=0;i<noguns.length;i++){
+    event.remove({output: noguns[i] })
+}
+
+event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: 'vs_tournament'})
+//note allow ship assembler
+
+event.remove({mod:'cosmos'})
+event.remove({mod: 'ae2'})
+for(var i=0;i<superbomits.length;i++){
+    event.remove({ not: { output:superbomits[i] }, mod: 'superbwarfare' })
+}
+
+//tacz ammos
+//for bullets, ,12gauge,,, 50bmg,,,, ,, ,, 6851fury, 76225, 76254, , 5728, 4570, 54539
+   event.shapeless(Item.of("tacz:ammo",20).withNBT({AmmoId: "tacz:9mm"}),
+[ "tacz_c:bullet",  "tacz_c:casefull_9mm",   ])
+
+    event.shapeless(Item.of("tacz:ammo",15).withNBT({AmmoId: "tacz:45acp"}),
+[ "tacz_c:bullet", "tacz_c:casefull_45acp","minecraft:copper_nugget",   ])
+
+    event.shapeless(Item.of("tacz:ammo",15).withNBT({AmmoId: "tacz:357mag"}),
+[ "tacz_c:bullet", "minecraft:copper_ingot","tacz_c:casefull_357mag",   ])
+
+    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "sfms:30scp"}),
+["minecraft:iron_nugget","tacz_c:bullet", "minecraft:amethyst_shard","tacz_c:casefull_3006",   ])
+
+    event.shapeless(Item.of("tacz:ammo",5).withNBT({AmmoId: "tacz:50ae"}),
+["minecraft:copper_nugget","tacz_c:casefull_50ae", "tacz_c:bullet","minecraft:iron_nugget",   ])
+
+    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:46*30"}),
+["tacz_c:casefull_4630","minecraft:copper_ingot", "minecraft:iron_nugget","tacz_c:bullet",   ])
+
+    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:556x45"}),
+["minecraft:iron_ingot","tacz_c:large_bullet", "spelunkery:lapis_lazuli_shard","tacz_c:casefull_55645",   ])
+
+    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:762x39"}),
+["minecraft:iron_ingot","tacz_c:large_bullet", "minecraft:iron_ingot","tacz_c:casefull_76239",   ])
+
+    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:58x42"}),
+["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:lapis_lazuli","tacz_c:casefull_5842",   ])
+    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:308"}),
 ["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:lapis_lazuli","tacz_c:casefull_308",   ])
+
+event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:338"}),
+["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:gold_ingot","tacz_c:casefull_338",   ])
+
+    //event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:3006"}),
+//["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:iron_ingot","tacz_c:casefull_3006",   ])
+
 //cbc changes
 event.blasting( 'createbigcannons:cast_iron_ingot','minecraft:iron_ingot' )
 //logs
@@ -539,3 +599,4 @@ for(var i=0;i<gunids.length;i++){
     //ender transmission
 
     //add radar fuze recipe
+
