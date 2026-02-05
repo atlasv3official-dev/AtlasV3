@@ -109,58 +109,7 @@ let noguns=[
 ]
 
 
-    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:357mag"}),
-[ "tacz_c:bullet", "minecraft:copper_ingot","tacz_c:casefull_357mag",   ])
 
-    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "sfms:30scp"}),
-["minecraft:iron_nugget","tacz_c:bullet", "minecraft:amethyst_shard","tacz_c:casefull_3006",   ])
-
-
-
-    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:50ae"}),
-["minecraft:copper_nugget","tacz_c:casefull_50ae", "tacz_c:bullet","minecraft:iron_nugget",   ])
-
-    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:46*30"}),
-["tacz_c:casefull_4630","minecraft:copper_ingot", "minecraft:iron_nugget","tacz_c:bullet",   ])
-
-
-    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:556x45"}),
-["minecraft:iron_ingot","tacz_c:large_bullet", "spelunkery:lapis_lazuli_shard","tacz_c:casefull_55645",   ])
-
-    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:762x39"}),
-["minecraft:iron_ingot","tacz_c:large_bullet", "minecraft:iron_ingot","tacz_c:casefull_76239",   ])
-
-    event.shapeless(Item.of("tacz:ammo",1).withNBT({AmmoId: "tacz:58x42"}),
-["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:lapis_lazuli","tacz_c:casefull_5842",   ])
-
-function bulletRecipeMaker(result,tip,joint,body,event){
-  event.shaped(
-    Item.of('tacz:ammo',3).withNBT({AmmoID:result}),
-    [
-      'AAA',
-      ' B ',
-      'CCC'
-    ],
-    {
-      A:tip,
-      B:joint,
-      C:+ body
-    }
-  )
-}
-
-let bulletrecipes=[
-  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
-  ['tacz:45acp','tacz_c:bullet','minecraft:copper_ingot','tacz_c:casefull_45acp'],
-  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_3006'],
-  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
-  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
-  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
-  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
-  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
-  ['tacz:9mm','tacz_c:bullet','create:brass_ingot','tacz_c:casefull_9mm'],
-
-]
 
 
 
@@ -183,6 +132,139 @@ event.remove({mod: 'ae2'})
 for(var i=0;i<superbomits.length;i++){
     event.remove({ not: { output:superbomits[i] }, mod: 'superbwarfare' })
 }
+//mek basic machines
+'mekanism:basic_smelting_factory',
+    'mekanism:basic_enriching_factory',
+    'mekanism:basic_crushing_factory',
+    'mekanism:basic_compressing_factory',
+    'mekanism:basic_combining_factory',
+    'mekanism:basic_purifying_factory',
+    'mekanism:basic_injecting_factory',
+    'mekanism:basic_infusing_factory',
+    'mekanism:basic_sawing_factory',
+/*
+event.shaped(
+  Item.of('mekanism:basic_smelting_factory',
+1),
+  [
+    '',
+    '',
+    ''
+  ],
+  {
+    A:,
+    B:,
+    C:
+  }
+)
+event.shaped(
+  Item.of(    'mekanism:basic_enriching_factory',
+1),
+  [
+    '',
+    '',
+    ''
+  ],
+  {
+    A:,
+    B:,
+    C:
+  }
+)
+event.shaped(
+  Item.of(    'mekanism:basic_crushing_factory',1),
+  [
+    '',
+    '',
+    ''
+  ],
+  {
+    A:,
+    B:,
+    C:
+  }
+)
+  event.shaped(
+  Item.of(    'mekanism:basic_compressing_factory',1),
+  [
+    '',
+    '',
+    ''
+  ],
+  {
+    A:,
+    B:,
+    C:
+  }
+)
+  event.shaped(
+  Item.of(    'mekanism:basic_combining_factory',1),
+  [
+    '',
+    '',
+    ''
+  ],
+  {
+    A:,
+    B:,
+    C:
+  }
+)
+  event.shaped(
+  Item.of(    'mekanism:basic_purifying_factory',1),
+  [
+    '',
+    '',
+    ''
+  ],
+  {
+    A:,
+    B:,
+    C:
+  }
+)
+  event.shaped(
+  Item.of(    'mekanism:basic_injecting_factory',1),
+  [
+    '',
+    '',
+    ''
+  ],
+  {
+    A:,
+    B:,
+    C:
+  }
+)
+  event.shaped(
+  Item.of(    'mekanism:basic_infusing_factory',1),
+  [
+    '',
+    '',
+    ''
+  ],
+  {
+    A:,
+    B:,
+    C:
+  }
+)
+  event.shaped(
+  Item.of(    'mekanism:basic_sawing_factory',1),
+  [
+    '',
+    '',
+    ''
+  ],
+  {
+    A:,
+    B:,
+    C:
+  }
+)
+*/
+
+
 
 //tacz ammos
 //for bullets, ,12gauge,,, 50bmg,,,, ,, ,, 6851fury, 76225, 76254, , 5728, 54539
