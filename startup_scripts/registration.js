@@ -31,6 +31,8 @@ StartupEvents.registry('item', event => {
     event.create('conductive_pellet').displayName("Conductive Pellet").texture('progression_items:item/primitive/pellet')
     event.create('pellet_mold').displayName("Pellet Mold").texture('progression_items:item/primitive/pellet_mask')
     event.create('modified_breadboard').displayName("Modified Breadboard").maxStackSize(1)
+    event.create('baked_circuit_board').displayName("Cured Circuit Board")
+    event.create('processed_circuit_board').displayName("Processed Circuit Board")
 
 })  
 StartupEvents.registry('fluid', event => {
@@ -57,4 +59,16 @@ StartupEvents.registry('fluid', event => {
     .bucketColor(0xaa8868)
     .viscosity(9999)
     .displayName('Conductive Slurry')
+})
+
+StartupEvents.registry('block', event => {
+  event.create('monitor')
+    .property(BlockProperties.HORIZONTAL_FACING)
+    .property(BlockProperties.PISTON_TYPE)
+    .displayName('Deactivated Monitor')
+    .fullBlock(false)
+    .notSolid()
+    .model("kubejs:block/monitor")
+    
+
 })

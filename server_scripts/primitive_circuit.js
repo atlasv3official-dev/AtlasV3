@@ -1,8 +1,8 @@
 ServerEvents.recipes(event => {
     const PATTERNS = {
-      "{Pattern:-12282s}": {type: "Control", CustomModelData: 1}, // Control
-      "{Pattern:-27642s}": {type: "Sequence", CustomModelData: 2}, // Sequence
-      "{Pattern:-12278s}": {type: "Relay", CustomModelData: 3} // Relay
+      "ae2:logic_processor_press": {type: "Control", CustomModelData: 1}, // Control
+      "ae2:calculation_processor_press": {type: "Sequence", CustomModelData: 2}, // Sequence
+      "ae2:engineering_processor_press": {type: "Relay", CustomModelData: 3} // Relay
     }
   event.custom({ // Liquid Resin
     "type": "create:mixing",
@@ -119,14 +119,7 @@ ServerEvents.recipes(event => {
   ]})
   Object.entries(PATTERNS).forEach(([element, NBT]) => { // I hate JS so much
     console.log(element," NBT: ", NBT)
-  const Cure1NBT = {
-    type: NBT.type,
-    CustomModelData: 7 - NBT.CustomModelData // Control: 6, Sequence: 5, Relay: 4
-  }
-  const Press1NBT = {
-    type: NBT.type,
-    CustomModelData: 13 - (7 - NBT.CustomModelData) // Control: 7, Sequence: 8, Relay: 9
-  }
+
   event.custom({
     "type": "create:deploying",
     "ingredients": [
@@ -134,9 +127,7 @@ ServerEvents.recipes(event => {
             "item": "kubejs:pasted_board"
         },
         {
-            "type": "forge:nbt",
-            "item": 'destroy:circuit_mask',
-            "nbt": element
+            "item": element
         }
     ],
     "results": [
@@ -169,12 +160,12 @@ ServerEvents.recipes(event => {
   "results": [
     {
       "type": "forge:nbt",
-        "item": "kubejs:traced_circuit_board",
-        "nbt": Cure1NBT,
+        "item": "kubejs:baked_circuit_board",
+        "nbt": NBT,
     }
   ]},)
-  var ingredient = {"type": "forge:nbt", "item":"kubejs:traced_circuit_board", "nbt": Cure1NBT}
-  var transitionalItem = {"item":"kubejs:traced_circuit_board","nbt": Press1NBT}
+  var ingredient = {"type": "forge:nbt", "item":"kubejs:baked_circuit_board", "nbt": NBT}
+  var transitionalItem = {"item":"kubejs:processed_circuit_board","nbt": NBT}
   event.custom({ //i'm too tired to figure out resilt
     // 0 documentation on this (that i can be bothered to find) so i'll decode as i go
   "type": "create:sequenced_assembly",
@@ -208,7 +199,7 @@ ServerEvents.recipes(event => {
   "transitionalItem": // the weird ass half item thery got in the in-between phases
     transitionalItem
 })
-  ingredient = {"type": "forge:nbt", "item":"kubejs:traced_circuit_board", "nbt": Press1NBT}
+  ingredient = {"type": "forge:nbt", "item":"kubejs:processed_circuit_board", "nbt": NBT}
   transitionalItem = {"item":"kubejs:traced_circuit_board","nbt": {CustomModelData: 99}}
   event.custom({ //copy and pasting this because this has to be the WORST recipe to make hwk
     // 0 documentation on this (that i can be bothered to find) so i'll decode as i go

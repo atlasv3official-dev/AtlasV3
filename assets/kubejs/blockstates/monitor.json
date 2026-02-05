@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "kubejs:block/monitor" },
+    "facing=south": { "model": "kubejs:block/monitor", "y": 180 },
+    "facing=east": { "model": "kubejs:block/monitor", "y": 90 },
+    "facing=west": { "model": "kubejs:block/monitor", "y": 270 }
+  }
+}

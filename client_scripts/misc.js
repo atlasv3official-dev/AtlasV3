@@ -134,6 +134,9 @@ ItemEvents.tooltip(event => {
       text.add(Text.gray('Type: Sequence'))
     }
   })
+event.addAdvanced('kubejs:monitor', (item, advanced, text) => {
+    text.add('§7Requires a§6 \'Circuit Rack\' §7to Function')
+})
   event.addAdvanced('kubejs:modified_breadboard', (item, advanced, text) => {
     const circuits = item.nbt?.circuits
     if (!circuits) {
@@ -165,9 +168,30 @@ ItemEvents.tooltip(event => {
   })
 })
 
-ClientEvents.lang('en_us', event => { //MBD2 Naming
-    event.add("block.mbd2.exposure_chamber", "Exposure Chamber");
-    event.add("block.mbd2.pattern_etcher", "Pattern Etcher");
-    event.add("mbd2.exposing", "Exposing");
-    event.add("mbd2.wafer_etching", "Etching");
+ClientEvents.lang('en_us', event => { // Look how inclusive i am
+    event.add("block.mbd2.circuit_rack", "Circuit Rack")
+})
+
+ClientEvents.lang('en_gb', event => { 
+    event.add("block.mbd2.circuit_rack", "Circuit Rack")
+})
+
+ClientEvents.lang('en_ca', event => { 
+    event.add("block.mbd2.circuit_rack", "Circuit Rack")
+})
+
+ClientEvents.lang('en_au', event => { 
+    event.add("block.mbd2.circuit_rack", "Circuit Rack")
+})
+
+ClientEvents.lang('en_nz', event => { 
+    event.add("block.mbd2.circuit_rack", "Circuit Rack")
+})
+
+ClientEvents.lang('en_pt', event => { 
+    event.add("block.mbd2.circuit_rack", "Circuit Contraption")
+})
+
+ClientEvents.lang('en_ud', event => { 
+    event.add("block.mbd2.circuit_rack", "ʞɔɐᴚ ʇᴉnɔɹᴉƆ")
 })
