@@ -133,15 +133,7 @@ for(var i=0;i<superbomits.length;i++){
     event.remove({ not: { output:superbomits[i] }, mod: 'superbwarfare' })
 }
 //mek basic machines
-'mekanism:basic_smelting_factory',
-    'mekanism:basic_enriching_factory',
-    'mekanism:basic_crushing_factory',
-    'mekanism:basic_compressing_factory',
-    'mekanism:basic_combining_factory',
-    'mekanism:basic_purifying_factory',
-    'mekanism:basic_injecting_factory',
-    'mekanism:basic_infusing_factory',
-    'mekanism:basic_sawing_factory',
+
 /*
 event.shaped(
   Item.of('mekanism:basic_smelting_factory',
