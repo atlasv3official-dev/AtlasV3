@@ -185,7 +185,7 @@ for(var i=0;i<superbomits.length;i++){
 }
 
 //tacz ammos
-//for bullets, ,12gauge,,, 50bmg,,,, ,, ,, 6851fury, 76225, 76254, , 5728, 4570, 54539
+//for bullets, ,12gauge,,, 50bmg,,,, ,, ,, 6851fury, 76225, 76254, , 5728, 54539
    event.shapeless(Item.of("tacz:ammo",20).withNBT({AmmoId: "tacz:9mm"}),
 [ "tacz_c:bullet",  "tacz_c:casefull_9mm",   ])
 
