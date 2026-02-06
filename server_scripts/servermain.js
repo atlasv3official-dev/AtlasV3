@@ -94,6 +94,16 @@ let superbomits=[
     
 ]
 
+let tournamentomits=[
+  'vs_tournament:spinner',
+'vs_tournament:seat',
+'vs_tournament:sensor',
+'vs_tournament:explosive_instant_small',
+'vs_tournament:explosive_instant_medium',
+'vs_tournament:explosive_staged_small'
+
+]
+
 ServerEvents.recipes(event =>{
 
 
@@ -479,7 +489,6 @@ for(var i=0;i<gunids.length;i++){
 
     //gravitron-weaken
 
-    //mek generation remove? solar, heat(fs but recip or no?), gas burning, bio
 
     //zero contact plate steel si bc ceramic (process, diamond+quartz+2 zero contact steel sheets)
     //all zero contact armor
