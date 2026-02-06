@@ -134,6 +134,9 @@ if(true){
 
 
 }
+
+//straw to string
+event.recipes.create.cutting(Item.of('minecraft:string').withChance(0.25),'farmersdelight:straw')
 //cbc changes
 event.blasting( 'createbigcannons:cast_iron_ingot','minecraft:iron_ingot' )
 //logs
