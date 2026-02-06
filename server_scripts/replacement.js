@@ -155,13 +155,11 @@ ServerEvents.recipes(event => {
     event.remove({ output: "tfmg:flamethrower" })
     event.remove({ output: "tfmg:engine_controller" })
     event.remove({ output: "tfmg:advanced_potato_cannon" })
-    event.remove({ output: "tfmg:steel_distillation_controller"})
     event.remove({ output: "tfmg:fireproof_chemical_vat" })
 
     event.custom({ "type": "create:mechanical_crafting", "acceptMirrored": false, "key": { "B": { "item": "tfmg:aluminum_bars" }, "C": { "type": "forge:nbt", 'item': "kubejs:primitive_circuit_board", 'nbt':{type: "Control"} }, "M": { "item": "tfmg:steel_mechanism" }, "O": { "tag": "forge:ingots/steel" }, "P": { "item": "tfmg:steel_pipe" }, "S": { "item": "tfmg:spark_plug" }, "T": { "item": "tfmg:steel_fluid_tank" }, "W": { "tag": "forge:wires/copper" } }, "pattern": [ "BWC ", "PPTM", "S O " ], "result": { "item": "tfmg:flamethrower" } } )
     event.custom({ "type": "create:mechanical_crafting", "acceptMirrored": false, "key": { "C": { "item": "tfmg:heavy_machinery_casing" }, "M": { "item": "tfmg:steel_mechanism" }, "R": { "item": "tfmg:rubber_sheet" }, "S": { "item": "create:shaft" }, "V": { "item": "tfmg:voltmeter" }, "W": { "tag": "forge:wires/copper" }, "Z": { "type": "forge:nbt", "item": "kubejs:primitive_circuit_board", "nbt":{type:"Control"} }, "X": { "type": "forge:nbt", "item": "kubejs:primitive_circuit_board", "nbt":{type:"Relay"} } }, "pattern": [ "RRR", "VSV", "WCW", "ZMX" ], "result": { "item": "tfmg:engine_controller" } })
     event.custom({ "type": "create:mechanical_crafting", "acceptMirrored": false, "key": { "C": control, "M": { "item": "tfmg:steel_mechanism" }, "O": { "item": "tfmg:rebar" }, "P": { "item": "tfmg:steel_pipe" }, "T": { "item": "tfmg:steel_fluid_tank" } }, "pattern": [ "PPPT", " MCO" ], "result": { "item": "tfmg:advanced_potato_cannon" } })
-    event.custom({ "type": "minecraft:crafting_shaped", "category": "misc", "key": { "C": { "item": "minecraft:compass" }, "E": relay, "F": control, "H": { "item": "tfmg:heavy_machinery_casing" }, "M": { "item": "tfmg:steel_mechanism" }, "P": { "item": "tfmg:industrial_pipe" }, "S": { "tag": "forge:plates/lead" } }, "pattern": [ "SPS", "ECF", "MHM" ], "result": { "item": "tfmg:steel_distillation_controller" }, "show_notification": true })
     event.custom({ "type": "minecraft:crafting_shaped", "category": "misc", "key": { "H": { "item": "tfmg:heavy_machinery_casing" }, "N": relay, "F": sequence, "P": { "item": "tfmg:fireproof_bricks" }, "R": { "item": "tfmg:rubber_sheet" }, "T": { "item": "tfmg:steel_chemical_vat" } }, "pattern": [ "PRP", "NTF", "PHP" ], "result": { "item": "tfmg:fireproof_chemical_vat" }, "show_notification": true })
 
 
