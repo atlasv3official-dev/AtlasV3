@@ -22,8 +22,6 @@ let itemids=[
     'mekanism:spatial_anchor',
 
     //tacz stuff
-    'tacz:workbench_a',
-    'tacz:workbench_b',
 
     'createbigcannons:flak_autcannon_round',
 
@@ -35,11 +33,6 @@ let itemids=[
     'zerocontact:bc_plate',
     'zerocontact:ceramic_plate',
 
-
-    'mekanismgenerators:heat_generator',
-    'mekanism:basic_universal_cable',
-    'mekanism:basic_chemical_tank',
-    'mekanism:basic_mechanical_pipe',
 
     'cosmos:detonation_controler',
     'cosmos:detonation_target',
