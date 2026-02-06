@@ -21,7 +21,10 @@ let itemids=[
     'mekanism:spatial_pylon',
     'mekanism:spatial_anchor',
 
+    //tacz stuff
     'tacz:ammo',
+    'tacz:workbench_a',
+    'tacz:workbench_b',
 
     'createbigcannons:flak_autcannon_round',
 
@@ -34,21 +37,10 @@ let itemids=[
     'zerocontact:ceramic_plate',
 
 
-    'mekanism:metallurgic_infuser',
     'mekanismgenerators:heat_generator',
     'mekanism:basic_universal_cable',
     'mekanism:basic_chemical_tank',
     'mekanism:basic_mechanical_pipe',
-    //'mekanism:basic__factory', 
-    'mekanism:basic_smelting_factory',
-    'mekanism:basic_enriching_factory',
-    'mekanism:basic_crushing_factory',
-    'mekanism:basic_compressing_factory',
-    'mekanism:basic_combining_factory',
-    'mekanism:basic_purifying_factory',
-    'mekanism:basic_injecting_factory',
-    'mekanism:basic_infusing_factory',
-    'mekanism:basic_sawing_factory',
 
     'cosmos:detonation_controler',
     'cosmos:detonation_target',
@@ -71,7 +63,7 @@ let itemids=[
     'createbigcannons:bronze_cannon_barrel',  
 
 
-      //trackwork
+      //trackwork(done)
     'trackwork:large_simple_wheel',
     'trackwork:simple_wheel',
     'trackwork:med_simple_wheel',
@@ -101,206 +93,51 @@ let superbomits=[
     'superbwarfare:claymore_mine',
     'superbwarfare:blu_43_mine',
     'superbwarfare:rpg',
+    'superbwarfare:propeller',
+    'superbwarfare:motor',
+    'superbwarfare:cell',
+    'superbwarfare:fusee',
+    'superbwarfare:high_energy_explosives',
+    'superbwarfare:grain'
     
 ]
 
-let noguns=[
-
-]
-
-
-
-
-
-
-
 ServerEvents.recipes(event =>{
 
-for(var i=0;i<itemids.length;i++){
-    event.remove({output: itemids[i] })
-}
 
-for(var i=0;i<noguns.length;i++){
-    event.remove({output: noguns[i] })
-}
+event.remove({output: itemids })
 
 event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: 'vs_tournament'})
-//note allow ship assembler
 
 event.remove({mod:'cosmos'})
 event.remove({mod: 'ae2'})
-for(var i=0;i<superbomits.length;i++){
-    event.remove({ not: { output:superbomits[i] }, mod: 'superbwarfare' })
-}
-//mek basic machines
 
-/*
-event.shaped(
-  Item.of('mekanism:basic_smelting_factory',
-1),
-  [
-    '',
-    '',
-    ''
-  ],
-  {
-    A:,
-    B:,
-    C:
-  }
-)
-event.shaped(
-  Item.of(    'mekanism:basic_enriching_factory',
-1),
-  [
-    '',
-    '',
-    ''
-  ],
-  {
-    A:,
-    B:,
-    C:
-  }
-)
-event.shaped(
-  Item.of(    'mekanism:basic_crushing_factory',1),
-  [
-    '',
-    '',
-    ''
-  ],
-  {
-    A:,
-    B:,
-    C:
-  }
-)
-  event.shaped(
-  Item.of(    'mekanism:basic_compressing_factory',1),
-  [
-    '',
-    '',
-    ''
-  ],
-  {
-    A:,
-    B:,
-    C:
-  }
-)
-  event.shaped(
-  Item.of(    'mekanism:basic_combining_factory',1),
-  [
-    '',
-    '',
-    ''
-  ],
-  {
-    A:,
-    B:,
-    C:
-  }
-)
-  event.shaped(
-  Item.of(    'mekanism:basic_purifying_factory',1),
-  [
-    '',
-    '',
-    ''
-  ],
-  {
-    A:,
-    B:,
-    C:
-  }
-)
-  event.shaped(
-  Item.of(    'mekanism:basic_injecting_factory',1),
-  [
-    '',
-    '',
-    ''
-  ],
-  {
-    A:,
-    B:,
-    C:
-  }
-)
-  event.shaped(
-  Item.of(    'mekanism:basic_infusing_factory',1),
-  [
-    '',
-    '',
-    ''
-  ],
-  {
-    A:,
-    B:,
-    C:
-  }
-)
-  event.shaped(
-  Item.of(    'mekanism:basic_sawing_factory',1),
-  [
-    '',
-    '',
-    ''
-  ],
-  {
-    A:,
-    B:,
-    C:
-  }
-)
-*/
+event.remove({not:{output:superbomits},mod:'superbwarfare'})
 
+//if true is used for compacting it
 
 
 //tacz ammos
-//for bullets, ,12gauge,,, 50bmg,,,, ,, ,, 6851fury, 76225, 76254, , 5728, 54539
-   event.shapeless(Item.of("tacz:ammo",20).withNBT({AmmoId: "tacz:9mm"}),
-[ "tacz_c:bullet",  "tacz_c:casefull_9mm",   ])
+if(true){
+//for bullets,
 
-    event.shapeless(Item.of("tacz:ammo",15).withNBT({AmmoId: "tacz:45acp"}),
-[ "tacz_c:bullet", "tacz_c:casefull_45acp","minecraft:copper_nugget",   ])
-
-    event.shapeless(Item.of("tacz:ammo",15).withNBT({AmmoId: "tacz:4570"}),
-[ "tacz_c:bullet", "tacz_c:casefull_4570","minecraft:gold_nugget",   ])
-
-    event.shapeless(Item.of("tacz:ammo",15).withNBT({AmmoId: "tacz:357mag"}),
-[ "tacz_c:bullet", "minecraft:copper_ingot","tacz_c:casefull_357mag",   ])
 
     event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "sfms:30scp"}),
 ["minecraft:iron_nugget","tacz_c:bullet", "minecraft:amethyst_shard","tacz_c:casefull_3006",   ])
 
-    event.shapeless(Item.of("tacz:ammo",5).withNBT({AmmoId: "tacz:50ae"}),
-["minecraft:copper_nugget","tacz_c:casefull_50ae", "tacz_c:bullet","minecraft:iron_nugget",   ])
 
-    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:46*30"}),
-["tacz_c:casefull_4630","minecraft:copper_ingot", "minecraft:iron_nugget","tacz_c:bullet",   ])
 
-    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:556x45"}),
-["minecraft:iron_ingot","tacz_c:large_bullet", "spelunkery:lapis_lazuli_shard","tacz_c:casefull_55645",   ])
 
-    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:762x39"}),
-["minecraft:iron_ingot","tacz_c:large_bullet", "minecraft:iron_ingot","tacz_c:casefull_76239",   ])
 
-    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:58x42"}),
-["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:lapis_lazuli","tacz_c:casefull_5842",   ])
-    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:308"}),
-["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:lapis_lazuli","tacz_c:casefull_308",   ])
 
-event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:338"}),
-["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:gold_ingot","tacz_c:casefull_338",   ])
 
-    //event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "tacz:3006"}),
-//["minecraft:copper_ingot","tacz_c:large_bullet", "minecraft:iron_ingot","tacz_c:casefull_3006",   ])
-
+}
 //cbc changes
 event.blasting( 'createbigcannons:cast_iron_ingot','minecraft:iron_ingot' )
 //logs
+
+//log and cast iron cannons
+if(true){
 event.shaped(
   Item.of(    'createbigcannons:log_cannon_end', 1), 
   [
@@ -403,11 +240,10 @@ event.shaped(
     A: 'createbigcannons:cast_iron_block'
   }
 )
+}
 
-
-
-
-//bronze(brass actually)
+//bronze cannons
+if(true){
 let ingot='create:brass_ingot'
 let sheet='create:brass_sheet'
 let block='create:brass_block'
@@ -562,8 +398,10 @@ event.recipes.create.sequenced_assembly(
         event.recipes.create.cutting(t7,t7)
     ]
 ).transitionalItem(t7).loops(4)
-
+}
 //trackwork
+if(true){
+
   event.shaped(
     Item.of('trackwork:small_simple_wheel',1),
     [
@@ -624,7 +462,7 @@ event.recipes.create.sequenced_assembly(
       B:'create:shaft'
     }
   )
-
+}
 });
 
 let gunids=[]
@@ -642,15 +480,12 @@ for(var i=0;i<gunids.length;i++){
 //MAKE RECIPES FOR
 //flak shells
 
-    // MEK FACTORIES WITH TFMG
-    // 'mekanism:basic__factory', 'mekanism:basic__factory'smelting,'mekanism:basic_enriching_factory','mekanism:basic_crushing_factory','mekanism:basic_compressing_factory','mekanism:basic_combining_factory','mekanism:basic_purifying_factory','mekanism:basic_injecting_factory','mekanism:basic_infusing_factory','mekanism:basic_sawing_factory'
-
+    
     //ae2 autocrafting
     //ae2 all the changes we really need to do whatever they are
+    //ae2 has circuitry changes
 
     //gravitron-weaken
-
-    //make trackwork wheels cheaper, part of vehicle buffing
 
     //mek generation remove? solar, heat(fs but recip or no?), gas burning, bio
 
@@ -662,8 +497,6 @@ for(var i=0;i<gunids.length;i++){
     //controlcraft camera link (exposure camera+create link)
     
     //air thrusters? starlance
-
-    //ore excav recipe change (amethyst for wanderlite matrix bc difficulty)
 
     //tinkers blocks(tp, op stuff)
 
