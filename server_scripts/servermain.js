@@ -65,6 +65,9 @@ let itemids=[
     
     //soph backpacks upgrades
     'sophisticatedbackpacks:upgrade_base',
+
+    //broken bandages
+    'immersivehealing:bandage_small',
     
 ]
 let superbomits=[
@@ -134,6 +137,9 @@ if(true){
 
 
 }
+//TEST REMOVE IT PLEASE OR BREAKING THINGS BIG BAD
+event.shapeless(Item.of('taczblueprints:blueprint_rifle',1),['minecraft:grass_block'])
+
 
 //straw to string
 event.recipes.create.cutting(Item.of('minecraft:string').withChance(0.25),'farmersdelight:straw')
@@ -513,4 +519,45 @@ for(var i=0;i<gunids.length;i++){
     //ender transmission
 
     //add radar fuze recipe
-
+/*zerocontact:steel_plate
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:jpc_armor
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:avs_armor
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:si_plate
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:bc_plate
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:ceramic_plate
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:steel_ingot
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:steel_sheet
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:ceramic_shatters
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:fabric_roll
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:raider_egg
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:fast_mt
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:helmet_6b47_ratnik_emr
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:helmet_6b47_ratnik_arc
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armor_thor_black
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:helmet_bastion_black
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:helmet_bastion_multicam
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:helmet_bastion_green
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:helmet_untar_blue
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:mask_tagilla_manhunt
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:mask_tagilla_ybey
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:mask_cold_fear
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:cap_cyan
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armor_untar_blue
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armor_hexgrid_black
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:helmet_altyn_visor
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:helmet_airframe
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armor_6b2
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armor_6b23_1
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armor_6b23_2
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armor_defender_2
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:backpack_t20_umbra
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:backpack_t20_multicam
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:dog_tag
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armband_black
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armband_red
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armband_green
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armband_blue
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armband_white
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armband_yellow
+[19:31:22] [Render thread/INFO] [minecraft/ChatComponent]: [System] [CHAT] - zerocontact:armband_flora
+*/
