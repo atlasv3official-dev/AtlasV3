@@ -131,7 +131,7 @@ if(true){
 ["minecraft:iron_nugget","tacz_c:bullet", "minecraft:amethyst_shard","tacz_c:casefull_3006",   ])
 
 event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "sfms:300ms"}),
-["minecraft:iron_nugget","tacz_c:bullet", Item.of("minecraft:gunpowder").withCount(2),'minecraft:amethyst_shard',"tacz_c:casefull_3008",   ])
+["minecraft:iron_nugget","tacz_c:bullet", Item.of("minecraft:gunpowder").withCount(2),'minecraft:amethyst_shard',"tacz_c:casefull_3008"  ])
 
 
 
