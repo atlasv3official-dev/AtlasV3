@@ -22,7 +22,6 @@ let itemids=[
     'mekanism:spatial_anchor',
 
     //tacz stuff
-    'tacz:ammo',
     'tacz:workbench_a',
     'tacz:workbench_b',
 
