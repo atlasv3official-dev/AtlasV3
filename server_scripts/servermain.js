@@ -84,7 +84,17 @@ let superbomits=[
     'superbwarfare:artillery_indicator',
     'superbwarfare:firing_parameters',
     'superbwarfare:ptkm_1r',
-    'superbwarfare:tm_62'
+    'superbwarfare:tm_62',
+    'superbwarfare:potion_mortar_shell',
+  'superbwarfare:taser_electrode',
+  'superbwarfare:crowbar',
+  'superbwarfare:monitor',
+  'superbwarfare:sandbag',
+  'superbwarfare:barbed_wire',
+  'superbwarfare:dragon_teeth',
+
+
+
     
 ]
 
