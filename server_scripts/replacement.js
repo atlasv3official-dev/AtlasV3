@@ -171,8 +171,6 @@ ServerEvents.recipes(event => {
     event.shaped( Item.of("computercraft:monitor_advanced", 4), [ 'AAA', 'ABA', 'ACA' ], { A: 'create:brass_ingot', B: {"tag": "forge:glass_panes"}, C: {'type': 'forge:nbt', 'item': 'kubejs:modified_breadboard','nbt':{circuits:[1,0,1],CustomModelData:5}} } )
     event.replaceInput({output: "#kubejs:smart_pipes"}, "create:electron_tube", control)
     event.replaceInput({output: "create:contraption_controls"}, "create:electron_tube", control)
-    event.replaceInput({output: "create:sequenced_gearshift"}, "create:electron_tube", control)
-    event.replaceInput({output: "destroy:keypunch"}, "create:electron_tube", {'type': 'forge:nbt','item':'kubejs:modified_breadboard','nbt':{circuits:[1,0,1],CustomModelData:5}})
     // PROGRESSION LOCKED ITEMS:
     for (const id of progressionLockedItems) {
       event.remove({output: id})
