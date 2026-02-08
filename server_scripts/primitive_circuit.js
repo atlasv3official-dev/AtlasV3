@@ -130,6 +130,7 @@ ServerEvents.recipes(event => {
             "item": element
         }
     ],
+    "keepHeldItem": true,
     "results": [
         {
             "item": "kubejs:traced_circuit_board",

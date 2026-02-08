@@ -38,22 +38,7 @@ let itemids=[
     'cosmos:detonation_target',
 
     'createbigcannons:cast_iron_ingot',
-    //logs craft
-    'createbigcannons:log_cannon_end',
-    'createbigcannons:log_cannon_chamber',
-    //cast iron, blast to make cast iron and then craft
-    'createbigcannons:cast_iron_cannon_end',
-    'createbigcannons:cast_iron_sliding_breech',
-    'createbigcannons:cast_iron_quickfiring_breech',   
-    'createbigcannons:cast_iron_cannon_chamber',
-    'createbigcannons:cast_iron_cannon_barrel',
-    //bronze, normal make then complex process
-    'createbigcannons:bronze_cannon_end',
-    'createbigcannons:bronze_sliding_breech',
-    'createbigcannons:bronze_quickfiring_breech',   
-    'createbigcannons:bronze_cannon_chamber',
-    'createbigcannons:bronze_cannon_barrel',  
-
+    
 
       //trackwork(done)
     'trackwork:large_simple_wheel',
@@ -81,7 +66,7 @@ let superbomits=[
     'superbwarfare:monitor',
     'superbwarfare:hand_grenade',
     'superbwarfare:rgo_grenade',
-    'superbwarfare:smoke_grenade',
+    'superbwarfare:m18_smoke_grenade',
     'superbwarfare:taser',
     'superbwarfare:rpg_rocket_standard',
     'superbwarfare:c4_bomb',
@@ -93,7 +78,23 @@ let superbomits=[
     'superbwarfare:cell',
     'superbwarfare:fusee',
     'superbwarfare:high_energy_explosives',
-    'superbwarfare:grain'
+    'superbwarfare:grain',
+    'superbwarfare:primer',
+    'superbwarfare:detonator',
+    'superbwarfare:artillery_indicator',
+    'superbwarfare:firing_parameters',
+    'superbwarfare:ptkm_1r',
+    'superbwarfare:tm_62',
+    'superbwarfare:potion_mortar_shell',
+  'superbwarfare:taser_electrode',
+  'superbwarfare:crowbar',
+  'superbwarfare:monitor',
+  'superbwarfare:sandbag',
+  'superbwarfare:barbed_wire',
+  'superbwarfare:dragon_teeth',
+
+
+
     
 ]
 
@@ -115,32 +116,20 @@ event.remove({output: itemids })
 event.remove({ not: {output: 'vs_tournament:ship_assembler' } , mod: 'vs_tournament'})
 
 event.remove({mod:'cosmos'})
-event.remove({mod: 'ae2'})
+
+event.remove({not:{output:'createendertransmission:chunk_loader'},mod: 'createendertransmission'})
 
 event.remove({not:{output:superbomits},mod:'superbwarfare'})
 
 //if true is used for compacting it
 
 
-//tacz ammos
-if(true){
-//for bullets,
-
-
-    event.shapeless(Item.of("tacz:ammo",10).withNBT({AmmoId: "sfms:30scp"}),
-["minecraft:iron_nugget","tacz_c:bullet", "minecraft:amethyst_shard","tacz_c:casefull_3006",   ])
 
 
 
-
-
-
-
-}
-//TEST REMOVE IT PLEASE OR BREAKING THINGS BIG BAD
-event.shapeless(Item.of('taczblueprints:blueprint_rifle',1),['minecraft:grass_block'])
-
-
+//dusts
+event.recipes.create.crushing(Item.of('mekanism:dust_copper').withChance(0.5),'minecraft:copper_ingot')
+event.recipes.create.crushing(Item.of('mekanism:dust_iron').withChance(0.5),'minecraft:iron_ingot')
 //straw to string
 event.recipes.create.cutting(Item.of('minecraft:string').withChance(0.25),'farmersdelight:straw')
 //cbc changes

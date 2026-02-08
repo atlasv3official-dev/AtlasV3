@@ -36,7 +36,7 @@ function onCollide(event, shipid, point) {
   let ke=0.5*(mass)*(vectorvelocity**2)
 
   
-  if (true){    //ke>=ENERGY_THRESHOLD) {
+  if (ke>=ENERGY_THRESHOLD) {
   event.level.explode(
     null,
         point.position.x(),
@@ -44,7 +44,7 @@ function onCollide(event, shipid, point) {
         point.position.z(),
     ke/ENERGY_THRESHOLD,
     false,
-    'tnt'
+    'none'
   )
 } 
 }
