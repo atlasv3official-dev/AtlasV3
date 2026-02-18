@@ -124,7 +124,20 @@ event.remove({not:{output:superbomits},mod:'superbwarfare'})
 //if true is used for compacting it
 
 
-
+//me level emitter
+event.recipes.shaped(
+  Item.of('ae2:level_emitter',1),
+  [
+    ' A ',
+    ' B ',
+    ' C '
+  ],
+  {
+    A:'create:brass_casing',
+    B:'minecraft:observer',
+    C:'create:electron_tube'
+  }
+)
 //blaze rod to blood
 event.recipes.create.mixing(Fluid.of('tconstruct:blazing_blood',1000),['minecraft:blaze_rod',Fluid.of('minecraft:lava',1000)])
 //dusts
@@ -483,7 +496,7 @@ for(var i=0;i<gunids.length;i++){
     
     //ae2 autocrafting
     //ae2 all the changes we really need to do whatever they are
-    //ae2 has circuitry changes
+
 
     //gravitron-weaken
 
