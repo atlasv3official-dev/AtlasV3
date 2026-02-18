@@ -125,8 +125,8 @@ event.remove({not:{output:superbomits},mod:'superbwarfare'})
 
 
 
-
-
+//blaze rod to blood
+event.recipes.create.mixing(Fluid.of('tconstruct:blazing_blood',1000),['minecraft:blaze_rod',Fluid.of('minecraft:lava',1000)])
 //dusts
 event.recipes.create.crushing(Item.of('mekanism:dust_copper').withChance(0.5),'minecraft:copper_ingot')
 event.recipes.create.crushing(Item.of('mekanism:dust_iron').withChance(0.5),'minecraft:iron_ingot')
