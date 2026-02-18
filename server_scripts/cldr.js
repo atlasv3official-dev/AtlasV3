@@ -43,7 +43,7 @@ function onCollide(event, shipid, point) {
         point.position.y(),
         point.position.z(),
     ke/ENERGY_THRESHOLD,
-    false,
+    true,
     'none'
   )
 } 
