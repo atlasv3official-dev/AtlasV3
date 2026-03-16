@@ -148,7 +148,7 @@ event.recipes.create.cutting(Item.of('minecraft:string').withChance(0.25),'farme
 //cbc changes
 event.blasting( 'createbigcannons:cast_iron_ingot','minecraft:iron_ingot' )
 //logs
-
+//test
 //log and cast iron cannons
 if(true){
 event.shaped(
