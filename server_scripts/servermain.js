@@ -121,6 +121,7 @@ event.remove({not:{output:'createendertransmission:chunk_loader'},mod: 'createen
 
 event.remove({not:{output:superbomits},mod:'superbwarfare'})
 
+event.remove({mod:'simpleenemymod'})
 //if true is used for compacting it
 
 
@@ -138,6 +139,22 @@ event.recipes.shaped(
     C:'create:electron_tube'
   }
 )
+//vmod toolgun
+event.recipes.shaped(
+  Item.of('the_vmod:toolgun',1),
+  [
+    '   ',
+    'ADE',
+    ' CB'
+  ],
+  {
+    A:'vs_clockwork:wanderwand',
+    B:'create:wrench',
+    C:'create_new_age:copper_wire',
+    D:'minecraft:nether_star',
+    E:'minecraft:netherite_ingot'
+  }
+)
 //blaze rod to blood
 event.recipes.create.mixing(Fluid.of('tconstruct:blazing_blood',1000),['minecraft:blaze_rod',Fluid.of('minecraft:lava',1000)])
 //dusts
@@ -148,7 +165,7 @@ event.recipes.create.cutting(Item.of('minecraft:string').withChance(0.25),'farme
 //cbc changes
 event.blasting( 'createbigcannons:cast_iron_ingot','minecraft:iron_ingot' )
 //logs
-//test
+
 //log and cast iron cannons
 if(true){
 event.shaped(
@@ -277,6 +294,7 @@ event.recipes.create.sequenced_assembly(
     block,
     
     [
+        event.recipes.create.cutting(t1,t1),
         event.recipes.create.deploying(t1,[t1,sheet]),
         event.recipes.create.deploying(t1,[t1,sheet]),
         event.recipes.create.deploying(t1,[t1,sheet]),
@@ -300,7 +318,9 @@ event.recipes.create.sequenced_assembly(
         scrap
     ],
     block,
-    [
+    [ 
+              event.recipes.create.cutting(t2,t2),
+
         event.recipes.create.deploying(t2,[t2,ingot]),
         event.recipes.create.deploying(t2,[t2,ingot]),
         event.recipes.create.deploying(t2,[t2,ingot]),
@@ -322,7 +342,8 @@ event.recipes.create.sequenced_assembly(
         scrap
     ],
     block,
-    [
+    [        event.recipes.create.cutting(t3,t3),
+
         event.recipes.create.deploying(t3,[t3,block]),
         event.recipes.create.cutting(t3,t3),
         event.recipes.create.deploying(t3,[t3,block]),
@@ -345,6 +366,8 @@ event.recipes.create.sequenced_assembly(
     ],
     block,
     [
+              event.recipes.create.cutting(t4,t4)
+,
         event.recipes.create.deploying(t4,[t4,sheet]),
         event.recipes.create.deploying(t4,[t4,sheet]),
         event.recipes.create.deploying(t4,[t4,ingot]),
@@ -365,6 +388,8 @@ event.recipes.create.sequenced_assembly(
     ],
     ingot,
     [
+              event.recipes.create.cutting(t5,t5),
+
         event.recipes.create.deploying(t5,[t5,ingot]),
         event.recipes.create.deploying(t5,[t5,ingot]),
         event.recipes.create.pressing(t5,t5),
@@ -383,7 +408,8 @@ event.recipes.create.sequenced_assembly(
         scrap
     ],
     block,
-    [
+    [        event.recipes.create.cutting(t6,t6)
+,
         event.recipes.create.deploying(t6,[t6,ingot]),
         event.recipes.create.deploying(t6,[t6,ingot]),
         event.recipes.create.deploying(t6,[t6,ingot]),
@@ -403,7 +429,8 @@ event.recipes.create.sequenced_assembly(
         scrap
     ],
     ingot,
-    [
+    [        event.recipes.create.cutting(t7,t7)
+,
         event.recipes.create.deploying(t7,[t7,ingot]),
         event.recipes.create.deploying(t7,[t7,ingot]),
         event.recipes.create.deploying(t7,[t7,'createbigcannons:recoil_spring']),
