@@ -290,11 +290,8 @@ event.recipes.create.sequenced_assembly(
         ingot,
         scrap
     ],
-
-    block,
-    
+    'createbigcannons:cast_iron_cannon_chamber',
     [
-        event.recipes.create.cutting(t1,t1),
         event.recipes.create.deploying(t1,[t1,sheet]),
         event.recipes.create.deploying(t1,[t1,sheet]),
         event.recipes.create.deploying(t1,[t1,sheet]),
@@ -317,10 +314,8 @@ event.recipes.create.sequenced_assembly(
         ingot,
         scrap
     ],
-    block,
-    [ 
-              event.recipes.create.cutting(t2,t2),
-
+    'createbigcannons:cast_iron_cannon_barrel',
+    [         
         event.recipes.create.deploying(t2,[t2,ingot]),
         event.recipes.create.deploying(t2,[t2,ingot]),
         event.recipes.create.deploying(t2,[t2,ingot]),
@@ -341,9 +336,8 @@ event.recipes.create.sequenced_assembly(
         ingot,
         scrap
     ],
-    block,
-    [        event.recipes.create.cutting(t3,t3),
-
+    'createbigcannons:cast_iron_cannon_end',
+    [        
         event.recipes.create.deploying(t3,[t3,block]),
         event.recipes.create.cutting(t3,t3),
         event.recipes.create.deploying(t3,[t3,block]),
@@ -364,10 +358,9 @@ event.recipes.create.sequenced_assembly(
         ingot,
         scrap
     ],
-    block,
+    'createbigcannons:cast_iron_sliding_breech',
     [
-              event.recipes.create.cutting(t4,t4)
-,
+            
         event.recipes.create.deploying(t4,[t4,sheet]),
         event.recipes.create.deploying(t4,[t4,sheet]),
         event.recipes.create.deploying(t4,[t4,ingot]),
@@ -386,10 +379,8 @@ event.recipes.create.sequenced_assembly(
         sheet,
         scrap
     ],
-    ingot,
+    'createbigcannons:cast_iron_autocannon_barrel',
     [
-              event.recipes.create.cutting(t5,t5),
-
         event.recipes.create.deploying(t5,[t5,ingot]),
         event.recipes.create.deploying(t5,[t5,ingot]),
         event.recipes.create.pressing(t5,t5),
@@ -407,9 +398,8 @@ event.recipes.create.sequenced_assembly(
         sheet,
         scrap
     ],
-    block,
-    [        event.recipes.create.cutting(t6,t6)
-,
+    'createbigcannons:cast_iron_autocannon_breech',
+    [        
         event.recipes.create.deploying(t6,[t6,ingot]),
         event.recipes.create.deploying(t6,[t6,ingot]),
         event.recipes.create.deploying(t6,[t6,ingot]),
@@ -428,9 +418,8 @@ event.recipes.create.sequenced_assembly(
         sheet,
         scrap
     ],
-    ingot,
-    [        event.recipes.create.cutting(t7,t7)
-,
+        'createbigcannons:cast_iron_autocannon_recoil_spring',
+    [       
         event.recipes.create.deploying(t7,[t7,ingot]),
         event.recipes.create.deploying(t7,[t7,ingot]),
         event.recipes.create.deploying(t7,[t7,'createbigcannons:recoil_spring']),
