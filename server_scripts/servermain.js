@@ -213,6 +213,64 @@ event.shaped(
 
 //zero contact
 if(true){
+// Steel Plate
+  event.shaped(
+    Item.of('zerocontact:steel_plate', '{Damage:0,insulation:[],protection_class:7}'),
+    [
+      'SSS',
+      'S S',
+      'SSS'
+    ],
+    {
+      S: '#forge:ingots/steel'
+    }
+  )
+
+  // Ceramic Plate
+  event.shaped(
+    Item.of('zerocontact:ceramic_plate', '{Damage:0,insulation:[],protection_class:8}'),
+    [
+      'CCC',
+      'S S',
+      'CCC'
+    ],
+    {
+      C: 'zerocontact:ceramic_shatters',
+      S: '#forge:ingots/steel'
+    }
+  )
+
+  // Silicon Plate
+  event.shaped(
+    Item.of('zerocontact:si_plate', '{Damage:0,insulation:[],protection_class:6}'),
+    [
+      'SSS',
+      ' F ',
+      'SSS'
+    ],
+    {
+      S: 'zerocontact:steel_sheet',
+      F: 'zerocontact:fabric_roll'
+    }
+  )
+
+  // Ballistic Plate
+  event.shaped(
+    Item.of('zerocontact:bc_plate', '{Damage:0,insulation:[],protection_class:10}'),
+    [
+      'PPP',
+      'FSF',
+      'PPP'
+    ],
+    {
+      P: 'zerocontact:ceramic_plate',
+      S: 'zerocontact:steel_sheet',
+      F: 'zerocontact:fabric_roll'
+    }
+  )
+
+
+
 event.recipes.shaped(
   Item.of('zerocontact:armband_flora',1),
   [
