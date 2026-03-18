@@ -138,6 +138,78 @@ event.remove({mod:'simpleenemymod'})
 
 
 
+event.shaped(
+    //network backup block
+  Item.of('drivebywire:backup_block', 1), 
+  [
+    'CBC',
+    'CAC', 
+    'CBC'
+  ],
+  {
+    A: 'drivebywire:controller_hub',
+    B: 'minecraft:black_wool',  
+    C: 'tfmg:steel_ingot'
+  }
+) 
+ event.shaped(
+    //Cable
+  Item.of('drivebywire:wire', 3), 
+  [
+    'BBB',
+    'AAA', 
+    'BBB'
+  ],
+  {
+    A: 'minecraft:copper_ingot',  
+    B: 'tfmg:plastic_sheet'
+  }
+)
+    event.shaped(
+    //Cable cutter
+  Item.of('drivebywire:wire_cutter', 1), 
+  [
+    ' B ',
+    'BAC', 
+    ' C '
+  ],
+  {
+    A: 'create:cogwheel',  
+    B: 'tfmg:steel_ingot',
+    C: 'tfmg:plastic_sheet'
+  }
+)
+    event.shaped(
+    //linked controller hub
+  Item.of('drivebywire:controller_hub', 1), 
+  [
+    'B B',
+    'BAB', 
+    'CDC'
+  ],
+  {
+    A: 'create:electron_tube',  
+    B: 'tfmg:aluminum_sheet',
+    C: 'create:brass_casing',
+    D: 'create:linked_controller'
+  }
+)
+    event.shaped(
+    //tweaked controller hub 
+  Item.of('drivebywire:tweaked_controller_hub', 1), 
+  [
+    'B B',
+    'BAB', 
+    'CDC'
+  ],
+  {
+    A: 'create:electron_tube',  
+    B: 'tfmg:aluminum_sheet',
+    C: 'create:brass_casing',
+    D:'create_tweaked_controller:tweaked_linked_controller'
+  }
+)
+
 
 //zero contact
 if(true){
