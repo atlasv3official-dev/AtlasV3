@@ -123,6 +123,7 @@ event.remove({not:{output:'createendertransmission:chunk_loader'},mod: 'createen
 event.remove({not:{output:superbomits},mod:'superbwarfare'})
 
 event.remove({mod:'simpleenemymod'})
+event.remove({mod:'zerocontact'})
 //if true is used for compacting it
 
 
